@@ -3,7 +3,7 @@
 ## Version 3.0.0
 
 **Release Date:** March 13, 2026
-**Branch:** develop -> main
+**Branch:** develop → main
 
 ---
 
@@ -77,7 +77,7 @@ versioned schema teardown workflows.
 
 ## ⚠️ Breaking Changes
 
-- **Behavioral change**: `ipsc_match.name` is no longer globally unique.
+- **Behavioural change**: `ipsc_match.name` is no longer globally unique.
 - Any application logic that relied on global uniqueness of match names must be updated to use additional
   qualifiers (for example, club and scheduled date).
 
@@ -97,15 +97,15 @@ None introduced in this release.
 
 ## 👥 Contributors
 
-**Leoni Lubbinge** - Schema maintenance and release management
+**Leoni Lubbinge** – Schema maintenance and release management
 
 ---
 
 ## 🔗 Additional Resources
 
 - [Architecture Documentation](ARCHITECTURE.md) - Detailed database architecture and design principles
-- [Project Overview & Quick Start Guide](README.md) - Introduction to the HPSC Database and setup workflow
-- [Release Notes History](documentation/history/RELEASE_NOTES_HISTORY.md) - Versioned release notes index
+- [Project Overview & Quick Start Guide](README.md) – Introduction to the HPSC Database and setup workflow
+- [Release Notes History](documentation/history/RELEASE_NOTES_HISTORY.md) – Versioned release notes index
 
 ---
 
