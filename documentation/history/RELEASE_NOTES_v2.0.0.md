@@ -1,6 +1,7 @@
 # Release Notes
 
 ## Version 2.0.0
+
 **Release Date:** February 23, 2026
 **Branch:** develop → main
 
@@ -49,8 +50,10 @@ improved referential integrity, and streamlined schema management.
 
 #### Improved Script Structure
 
-- **`table_alter.sql`**: Consolidated schema modification scripts with clear date markers for change tracking
-- **`table_create.sql`**: Maintained comprehensive table creation scripts with proper foreign key constraints
+- **`table_alter-v2.0.0.sql`**: Consolidated schema modification scripts with clear date markers for change
+  tracking
+- **`table_create_v1.0.0.sql`**: Maintained comprehensive table creation scripts with proper foreign key
+  constraints
 - **`table_data.sql`**: Updated seed data with corrected club names
 - **`schema.sql`**: Enhanced with proper user and schema creation for both development and production
   environments
@@ -79,12 +82,13 @@ improved referential integrity, and streamlined schema management.
 ## ⚠️ Breaking Changes
 
 ### Schema Changes
+
 **Removed Columns**
 
 - `ipsc_match.club_name` - Use `club_id` foreign key relationship instead
 - `match_competitor.club` - Use `match_id` → `club_id` relationship instead
-**Migration Path:**
-Applications should now retrieve club information via proper JOIN operations:
+  **Migration Path:**
+  Applications should now retrieve club information via proper JOIN operations:
 
 ```sql
 -- Old approach (no longer supported):
@@ -140,6 +144,7 @@ FROM ipsc_match m
 ### Database Changes
 
 #### Tables Created (Complete Schema)
+
 **Core Tables:**
 
 - `club`: Club/organisation management with unique name and abbreviation constraints
@@ -149,7 +154,7 @@ FROM ipsc_match m
   scoring parameters
 - `match_competitor`: Match participation records with division, power factor, and overall match results
 - `match_stage_competitor`: Detailed stage performance including hit factor, stage points, and ranking
-**Join Tables:**
+  **Join Tables:**
 
 - `club_matches`: Links clubs to their hosted matches
 - `ipsc_match_match_stages`: Links matches to their stages
@@ -175,11 +180,12 @@ FROM ipsc_match m
 #### Schema Scripts Updated
 
 - `scripts/schema.sql`: Database and user creation with proper permissions
-- `scripts/table_create.sql`: Core table definitions with foreign key constraints
-- `scripts/table_alter.sql`: Chronological schema modifications
+- `scripts/table_create_v1.0.0.sql`: Core table definitions with foreign key constraints
+- `scripts/table_alter-v2.0.0.sql`: Chronological schema modifications
 - `scripts/table_data.sql`: Updated seed data for clubs
 
 ### Dependencies
+
 **Database Requirements:**
 
 - MySQL 8.x
@@ -194,7 +200,7 @@ FROM ipsc_match m
 ### For New Installations
 
 1. Run `scripts/schema.sql` to create databases and users
-2. Run `scripts/table_create.sql` to create all tables
+2. Run `scripts/table_create_v1.0.0.sql` to create all tables
 3. Run `scripts/table_data.sql` to insert initial seed data
 
 ### For Existing Installations
@@ -230,6 +236,7 @@ None at this time.
 ---
 
 ## 👥 Contributors
+
 **Leoni Lubbinge** - Database architecture and implementation
 
 ---

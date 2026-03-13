@@ -35,8 +35,8 @@ tables.
 
 - Refreshed data updates for the `match` table
 - Updated schema generation and migration scripts:
-    - `scripts/table_create.sql`
-    - `scripts/table_alter.sql`
+    - `scripts/table_create_v1.0.0.sql`
+    - `scripts/table_alter-v2.0.0.sql`
 
 **Removed**
 
@@ -70,9 +70,10 @@ tables.
 
 #### Migration Guide
 
-**For new environments:** Use `scripts/table_create.sql`
+**For new environments:** Use `scripts/table_create_v1.0.0.sql`
 
-**For existing environments:** Apply `scripts/table_alter.sql` against databases based on the `main` branch
+**For existing environments:** Apply `scripts/table_alter-v2.0.0.sql` against databases based on the `main`
+branch
 schema
 
 **Post-migration validation:**
@@ -123,12 +124,13 @@ disqualification tracking. It also includes documentation updates and configurat
 
 ### Developer/Tooling
 
-- Configure IDE SQL dialect mapping so `scripts/table_alter.sql` is recognised as MySQL (in
+- Configure IDE SQL dialect mapping so `scripts/table_alter-v2.0.0.sql` is recognised as MySQL (in
   `.idea/sqldialects.xml`).
 
 ### Upgrade notes
 
-- Apply the new statements in `scripts/table_alter.sql` to bring an existing `version-1.0.0` database up to
+- Apply the new statements in `scripts/table_alter-v2.0.0.sql` to bring an existing `version-1.0.0` database
+  up to
   `version-1.1.0`.
 - If your application layer assumes `match.club_id` is always present, update validation/queries to handle
   `NULL`.

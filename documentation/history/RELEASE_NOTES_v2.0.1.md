@@ -24,7 +24,7 @@ comment wording in schema change scripts. No schema or data changes are introduc
 
 ### 📋 SQL Script Notes
 
-- Standardised timestamp normalisation comment wording in `scripts/table_alter.sql`
+- Standardised timestamp normalisation comment wording in `scripts/table_alter-v2.0.0.sql`
 
 ---
 

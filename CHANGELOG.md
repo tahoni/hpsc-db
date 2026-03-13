@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 📌 Table of Contents
 
 - [🧪 Unreleased](#-unreleased)
+- [🧾 3.0.0](#-300---2026-03-13)
 - [🧾 2.0.1](#-201---2026-02-25)
 - [🧾 2.0.0](#-200---2026-02-23)
 - [🧾 1.1.0](#-110---2026-01-28)
@@ -28,19 +29,68 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## 🧾 [3.0.0] - 2026-03-13
+
+### Added
+
+- **SQL Scripts**: Added `table_drop_v3.0.0.sql` for foreign-key-safe teardown of current schema tables
+- **SQL Scripts**: Added `table_drop_v3.0.0.sql` for foreign-key-safe teardown of legacy v1.0.0 tables
+
+### Changed
+
+- **Database Schema**: Removed global uniqueness enforcement on `ipsc_match.name`
+- **SQL Scripts**: Added dynamic metadata-based index lookup before dropping the unique index/constraint on
+  `ipsc_match.name`
+
+### Fixed
+
+- Schema migration reliability in environments where unique index names differ for `ipsc_match.name`
+
+### Breaking Changes
+
+- ⚠️ **`ipsc_match.name` is no longer globally unique** - applications must not rely on name-only uniqueness
+
+### Migration Notes
+
+```sql
+-- Migration for version 3.0.0
+
+-- Drop unique constraint/index on ipsc_match.name (if present)
+SET @ipsc_match_name_unique_idx := (SELECT s.INDEX_NAME
+                                    FROM INFORMATION_SCHEMA.STATISTICS s
+                                    WHERE s.TABLE_SCHEMA = DATABASE()
+                                      AND s.TABLE_NAME = 'ipsc_match'
+                                      AND s.COLUMN_NAME = 'name'
+                                      AND s.NON_UNIQUE = 0
+                                    LIMIT 1);
+
+SET @ipsc_match_drop_unique_sql := IF(
+        @ipsc_match_name_unique_idx IS NOT NULL,
+        CONCAT('ALTER TABLE ipsc_match DROP INDEX `', @ipsc_match_name_unique_idx, '`'),
+        'SELECT ''No unique index found on ipsc_match.name'''
+                                   );
+
+PREPARE stmt_drop_ipsc_match_name_unique FROM @ipsc_match_drop_unique_sql;
+EXECUTE stmt_drop_ipsc_match_name_unique;
+DEALLOCATE PREPARE stmt_drop_ipsc_match_name_unique;
+```
+
+---
+
 ## 🧾 [2.0.1] - 2026-02-25
 
 ### Changed
 
 - **Documentation**: Refined formatting and structure across release notes, history, and archive references
 - **Documentation**: Added consolidated release notes index and navigation guides in `documentation/history/`
-- **SQL Scripts**: Standardised comment wording for timestamp normalisation in `table_alter.sql`
+- **SQL Scripts**: Standardised comment wording for timestamp normalisation in `table_alter-v2.0.0.sql`
 
 ### Fixed
 
 - Inconsistent headings and formatting in release documentation for clearer navigation
 
 ---
+
 ## 🧾 [2.0.0] - 2026-02-23
 
 ### Added
@@ -54,11 +104,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation**: CHANGELOG.md for structured version tracking following Keep a Changelog format
 - **Documentation**: RELEASE_NOTES.md template aligned with modern documentation practices
 - **Documentation**: HISTORY.md with comprehensive release history and narrative descriptions for each version
-- **Documentation**: Versioned release notes (v2.0.1, v2.0.0, v1.1.0, v1.0.0) in `documentation/history/` directory
+- **Documentation**: Versioned release notes (v2.0.1, v2.0.0, v1.1.0, v1.0.0) in `documentation/history/`
+  directory
 
 ### Changed
 
-- **SQL Scripts**: Consolidated schema modification scripts in `table_alter.sql` with chronological date
+- **SQL Scripts**: Consolidated schema modification scripts in `table_alter-v2.0.0.sql` with chronological
+  date
   markers
 - **SQL Scripts**: Enhanced `schema.sql` with proper user and schema creation for development and production
 - **SQL Scripts**: Updated `table_data.sql` with corrected club names for seed data
@@ -123,7 +175,7 @@ ALTER TABLE match_competitor
 - **Database Schema**: Foreign key constraints for referential integrity
 - **Documentation**: Comprehensive `ARCHITECTURE.md` with design principles
 - **Documentation**: Enhanced `README.md` with project overview and quick start guide
-- **SQL Scripts**: `table_create.sql` with complete table definitions
+- **SQL Scripts**: `table_create_v1.0.0.sql` with complete table definitions
 - **SQL Scripts**: `schema.sql` for database and user setup
 - **SQL Scripts**: `table_data.sql` with initial seed data for clubs
 
@@ -158,7 +210,8 @@ ALTER TABLE match_competitor
 
 ## 🔗 Version Comparison Links
 
-- 2.0.1 vs 2.0.0: `git log v2.0.0...HEAD`
+- 3.0.0 vs 2.0.1: `git log v2.0.1...v3.0.0`
+- 2.0.1 vs 2.0.0: `git log v2.0.0...v2.0.1`
 - 2.0.0 vs 1.1.0: `git log v1.1.0...v2.0.0`
 - 1.1.0 vs 1.0.0: `git log v1.0.0...v1.1.0`
 
@@ -193,7 +246,7 @@ When adding new versions to this changelog:
 
 ## 📚 Additional Resources
 
-- [Release Notes](RELEASE_NOTES.md) – Detailed release information for version 2.0.1
+- [Release Notes](RELEASE_NOTES.md) – Detailed release information for version 3.0.0
 - [Architecture Documentation](ARCHITECTURE.md) – Database architecture and design principles
 - [Project Overview](README.md) – Getting started and project introduction
 - [Improvement Suggestions](documentation/roadmap/SUGGESTIONS.md) - Future enhancements and roadmap

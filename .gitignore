@@ -296,4 +296,5 @@ build/
 dist/
 target/
 tsdocs/
-.idea/*
+.idea/
+.junie/
