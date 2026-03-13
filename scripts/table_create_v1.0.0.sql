@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS ipsc_match
 (
     id                 BIGINT PRIMARY KEY AUTO_INCREMENT,
     club_id            BIGINT       NULL,
-    name               VARCHAR(255) NOT NULL UNIQUE,
+    name               VARCHAR(255) NOT NULL,
     scheduled_date     DATETIME     NOT NULL,
     match_firearm_type VARCHAR(255),
     match_category     VARCHAR(255),
