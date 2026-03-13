@@ -26,7 +26,7 @@ versioned schema teardown workflows.
 ### 🧰 SQL Script Additions
 
 - **New script**: Added `scripts/table_drop_v3.0.0.sql` for foreign-key-safe teardown of v3.0.0 tables
-- **Backfill support**: Added `scripts/table_drop_v1.0.0.sql` for complete teardown of legacy v1.0.0 tables
+- **Backfill support**: Added `scripts/table_drop_v3.0.0.sql` for complete teardown of legacy v1.0.0 tables
 
 ---
 
@@ -54,7 +54,7 @@ versioned schema teardown workflows.
     - Drops the unique index/constraint on `ipsc_match.name` when present
 - `scripts/table_drop_v3.0.0.sql`
     - Adds FK-safe drop order for current schema tables
-- `scripts/table_drop_v1.0.0.sql`
+- `scripts/table_drop_v3.0.0.sql`
     - Adds FK-safe drop order for v1.0.0 schema tables
 
 ---
@@ -104,7 +104,8 @@ None introduced in this release.
 ## 🔗 Additional Resources
 
 - [Architecture Documentation](../../ARCHITECTURE.md) - Detailed database architecture and design principles
-- [Project Overview & Quick Start Guide](../../README.md) - Introduction to the HPSC Database and setup workflow
+- [Project Overview & Quick Start Guide](../../README.md) - Introduction to the HPSC Database and setup
+  workflow
 - [Release Notes History](RELEASE_NOTES_HISTORY.md) - Versioned release notes index
 
 ---

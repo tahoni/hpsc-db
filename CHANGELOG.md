@@ -34,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - **SQL Scripts**: Added `table_drop_v3.0.0.sql` for foreign-key-safe teardown of current schema tables
-- **SQL Scripts**: Added `table_drop_v1.0.0.sql` for foreign-key-safe teardown of legacy v1.0.0 tables
+- **SQL Scripts**: Added `table_drop_v3.0.0.sql` for foreign-key-safe teardown of legacy v1.0.0 tables
 
 ### Changed
 
