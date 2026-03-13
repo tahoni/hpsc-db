@@ -20,8 +20,8 @@ versioned schema teardown workflows.
 ### 🗄️ Database Schema
 
 - **Constraint update**: Removed the unique constraint/index on `ipsc_match.name`
-- **Compatibility handling**: Uses metadata-driven SQL in `scripts/table_alter-v3.0.0.sql` to resolve and
-  drop the actual unique index name safely
+- **Compatibility handling**: Uses metadata-driven SQL to resolve and drop the actual unique index name
+  safely during migration
 
 ### 🧰 SQL Script Additions
 
@@ -50,7 +50,7 @@ versioned schema teardown workflows.
 
 ### Database Changes
 
-- `scripts/table_alter-v3.0.0.sql`
+- v3.0.0 migration update
     - Drops the unique index/constraint on `ipsc_match.name` when present
 - `scripts/table_drop_v3.0.0.sql`
     - Adds FK-safe drop order for current schema tables
@@ -64,13 +64,13 @@ versioned schema teardown workflows.
 ### For New Installations
 
 - Apply `scripts/table_create_v3.0.0.sql`
-- Use `scripts/table_alter-v3.0.0.sql` when migrating from schemas that still enforce uniqueness on
+- Use the v3.0.0 migration step when upgrading from schemas that still enforce uniqueness on
   `ipsc_match.name`
 
 ### For Existing Installations
 
 1. Back up your database.
-2. Apply `scripts/table_alter-v3.0.0.sql`.
+2. Apply the v3.0.0 migration that removes uniqueness from `ipsc_match.name`.
 3. Validate that duplicates on `ipsc_match.name` are now allowed where required by business workflow.
 
 ---

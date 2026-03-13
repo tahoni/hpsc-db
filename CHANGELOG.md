@@ -39,8 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Database Schema**: Removed global uniqueness enforcement on `ipsc_match.name`
-- **SQL Scripts**: Added dynamic metadata-based index lookup in `table_alter-v3.0.0.sql` before dropping the
-  unique index/constraint
+- **SQL Scripts**: Added dynamic metadata-based index lookup before dropping the unique index/constraint on
+  `ipsc_match.name`
 
 ### Fixed
 

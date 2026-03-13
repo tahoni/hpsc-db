@@ -55,7 +55,7 @@ repeatable and explicit.
 - **Breaking**: `ipsc_match.name` is no longer globally unique
 - **New**: `table_drop_v3.0.0.sql` for FK-safe teardown of v3.0.0 schema tables
 - **New**: `table_drop_v3.0.0.sql` for FK-safe teardown of v1.0.0 schema tables
-- **Improved**: `table_alter-v3.0.0.sql` uses metadata-driven index resolution for safer migration execution
+- **Improved**: The v3.0.0 migration uses metadata-driven index resolution for safer migration execution
 
 ### ⚠️ Impact
 
