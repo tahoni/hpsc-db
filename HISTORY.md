@@ -7,6 +7,7 @@ themes and objectives for each version.
 
 ## 📌 Table of Contents
 
+- [🧭 Version 3.0.0 - Schema Maintenance & Migration Reliability](#-version-300---schema-maintenance--migration-reliability)
 - [🧭 Version 2.0.1 - Documentation & Release Hygiene](#-version-201---documentation--release-hygiene)
 - [🧭 Version 2.0.0 - Schema Refinement & Data Integrity](#-version-200---schema-refinement--data-integrity)
 - [🧭 Version 1.1.0 – Enhanced Schema & Documentation](#-version-110--enhanced-schema--documentation)
@@ -19,6 +20,55 @@ themes and objectives for each version.
     - [🔭 Long-term Vision](#-long-term-vision)
 - [🔗 Additional Resources](#-additional-resources)
 - [💬 Questions or Feedback?](#-questions-or-feedback)
+
+---
+
+## 🧭 Version 3.0.0 - Schema Maintenance & Migration Reliability
+
+**Released:** March 13, 2026  
+**Type:** Major Release (Breaking Changes)
+
+### ✨ Release Theme
+
+This major release focuses on **schema-maintenance reliability** and **operational reset workflows**.
+The core objective is to make migrations safer across environments while providing clear teardown scripts
+for repeatable setup and testing.
+
+### 🎯 Key Objectives
+
+1. **Relax Constraint Behavior**: Remove global uniqueness enforcement on `ipsc_match.name`
+2. **Improve Migration Safety**: Use dynamic index-name resolution before applying `DROP INDEX`
+3. **Support Environment Resets**: Provide FK-safe drop scripts for current and legacy schemas
+4. **Keep Release Artifacts Aligned**: Synchronise root and historical release documentation
+
+### 📖 Why This Release Matters
+
+Version 3.0.0 addresses a practical migration issue where different environments can store different
+index names for equivalent unique constraints. By resolving index metadata at runtime before dropping the
+constraint, migrations become more robust and less dependent on prior naming conventions.
+
+The new versioned drop scripts also improve developer and operations workflows by making schema teardown
+repeatable and explicit.
+
+### 📋 Major Changes
+
+- **Breaking**: `ipsc_match.name` is no longer globally unique
+- **New**: `table_drop_v3.0.0.sql` for FK-safe teardown of v3.0.0 schema tables
+- **New**: `table_drop_v1.0.0.sql` for FK-safe teardown of v1.0.0 schema tables
+- **Improved**: `table_alter-v3.0.0.sql` uses metadata-driven index resolution for safer migration execution
+
+### ⚠️ Impact
+
+This release requires validation of application logic that previously relied on globally unique match names.
+Consumers should use additional qualifiers (for example, club and scheduled date) where uniqueness is
+required at query or business-rule level.
+
+### 🔗 Related Documentation
+
+- [Full Release Notes](RELEASE_NOTES.md) – Complete details for version 3.0.0
+- [Versioned Release Notes](documentation/history/RELEASE_NOTES_v3.0.0.md) – Archived release notes in the
+  history directory
+- [Changelog Entry](CHANGELOG.md#-300---2026-03-13) – Categorised list of all changes
 
 ---
 
@@ -163,7 +213,7 @@ the architectural direction for future enhancements.
 
 ### 📋 Major Changes
 
-- **New**: Complete table definitions in `table_create.sql`
+- **New**: Complete table definitions in `table_create_v1.0.0.sql`
 - **New**: Foreign key constraints for referential integrity
 - **New**: Comprehensive architecture documentation
 - **Improved**: Enhanced README with a quick start guide
@@ -253,6 +303,8 @@ v1.0.0 (2025-12-28) ─── Initial Release
           └─> v2.0.0 (2026-02-23) ─── Breaking Changes
                  │
                  └─> v2.0.1 (2026-02-25) ─── Documentation & Release Hygiene
+                        │
+                        └─> v3.0.0 (2026-03-13) ─── Migration Reliability
 ```
 
 ---
@@ -285,7 +337,7 @@ practical shooting clubs worldwide, supporting:
 
 - [Changelog](CHANGELOG.md) – Detailed, categorised list of changes for each version following Keep a
   Changelog format
-- [Release Notes](RELEASE_NOTES.md) – Comprehensive release information for version 2.0.0 with upgrade guides
+- [Release Notes](RELEASE_NOTES.md) – Comprehensive release information for version 3.0.0 with upgrade guides
   and breaking changes
 - [Architecture Documentation](ARCHITECTURE.md) - Detailed database architecture, design principles, and
   technical requirements
@@ -307,6 +359,6 @@ For questions about release history, version strategy, or to provide feedback:
 
 ---
 
-*Last Updated: 2026-02-25*
+*Last Updated: 2026-03-13*
 
 

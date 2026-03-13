@@ -40,7 +40,8 @@ documentation. The release transforms the initial prototype into a production-re
 
 #### Core Scripts Established
 
-- **`table_create.sql`**: Comprehensive table creation script with all entity definitions and constraints
+- **`table_create_v1.0.0.sql`**: Comprehensive table creation script with all entity definitions and
+  constraints
 - **`schema.sql`**: Database and user creation scripts for development and production environments
 - **`table_data.sql`**: Initial seed data for clubs (HPSC, PMPSC, SOSC)
 
@@ -157,7 +158,7 @@ None. This is a feature addition release with no breaking changes.
     - Creates `hpsc_dev` and `hpsc_prod` schemas
     - Creates corresponding users with appropriate permissions
 3. Select your target schema (dev or prod)
-4. Run `scripts/table_create.sql` to create all tables with constraints
+4. Run `scripts/table_create_v1.0.0.sql` to create all tables with constraints
 5. Run `scripts/table_data.sql` to insert initial club seed data
 6. Verify installation in DataGrip Database Explorer
 
