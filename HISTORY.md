@@ -7,6 +7,7 @@ themes and objectives for each version.
 
 ## 📌 Table of Contents
 
+- [🧭 Version 3.1.0 - Script Version Alignment & Match Data Maintenance](#-version-310---script-version-alignment--match-data-maintenance)
 - [🧭 Version 3.0.0 - Schema Maintenance & Migration Reliability](#-version-300---schema-maintenance--migration-reliability)
 - [🧭 Version 2.0.1 - Documentation & Release Hygiene](#-version-201---documentation--release-hygiene)
 - [🧭 Version 2.0.0 - Schema Refinement & Data Integrity](#-version-200---schema-refinement--data-integrity)
@@ -20,6 +21,55 @@ themes and objectives for each version.
     - [🔭 Long-term Vision](#-long-term-vision)
 - [🔗 Additional Resources](#-additional-resources)
 - [💬 Questions or Feedback?](#-questions-or-feedback)
+
+---
+
+## 🧭 Version 3.1.0 - Script Version Alignment & Match Data Maintenance
+
+**Released:** March 15, 2026  
+**Type:** Minor Release (Operational Improvement)
+
+### ✨ Release Theme
+
+This release focuses on **version-aligned SQL script naming** and **safe operational match-data cleanup**.
+The primary objective is to improve script discoverability and reduce maintenance friction across
+documentation, onboarding, and automation workflows.
+
+### 🎯 Key Objectives
+
+1. **Standardise Baseline Script Names**: Align base schema and seed script names to the v1.1.0 release
+2. **Improve Operational Safety**: Add a transactional delete workflow for `ipsc_match` and dependent data
+3. **Keep Documentation Consistent**: Update historical references to renamed script files
+4. **Reduce Upgrade Friction**: Ensure runbooks and tooling target current, versioned script names
+
+### 📖 Why This Release Matters
+
+Version 3.1.0 improves day-to-day reliability without introducing breaking schema changes. By renaming
+legacy baseline files to versioned names, teams can more easily identify the correct scripts during setup
+and migration planning.
+
+The new delete workflow script provides a repeatable, foreign-key-safe way to clear match data in v3.0.0
+environments, which is especially useful for test resets and operational maintenance.
+
+### 📋 Major Changes
+
+- **New**: Added `table_delete_ipsc_match_v3.0.0.sql` for transactional, FK-safe deletion of `ipsc_match`
+  and dependent match-result data
+- **Changed**: Renamed `table_create_v1.0.0.sql` to `table_create_v1.1.0.sql`
+- **Changed**: Renamed `table_data.sql` to `table_data_v1.1.0.sql`
+- **Improved**: Updated script references in release documentation and changelog/history entries
+
+### ⚠️ Impact
+
+No breaking changes are introduced. Existing environments should update automation, setup guides, and local
+runbooks to reference the renamed v1.1.0 script files.
+
+### 🔗 Related Documentation
+
+- [Full Release Notes](RELEASE_NOTES.md) – Complete details for version 3.1.0
+- [Versioned Release Notes](documentation/history/RELEASE_NOTES_v3.1.0.md) – Archived release notes in the
+  history directory
+- [Changelog Entry](CHANGELOG.md#-310---2026-03-15) – Categorised list of all changes
 
 ---
 
@@ -305,6 +355,8 @@ v1.0.0 (2025-12-28) ─── Initial Release
                  └─> v2.0.1 (2026-02-25) ─── Documentation & Release Hygiene
                         │
                         └─> v3.0.0 (2026-03-13) ─── Migration Reliability
+                               │
+                               └─> v3.1.0 (2026-03-15) ─── Script Alignment & Data Maintenance
 ```
 
 ---
@@ -337,7 +389,7 @@ practical shooting clubs worldwide, supporting:
 
 - [Changelog](CHANGELOG.md) – Detailed, categorised list of changes for each version following Keep a
   Changelog format
-- [Release Notes](RELEASE_NOTES.md) – Comprehensive release information for version 3.0.0 with upgrade guides
+- [Release Notes](RELEASE_NOTES.md) – Comprehensive release information for version 3.1.0 with upgrade guides
   and breaking changes
 - [Architecture Documentation](ARCHITECTURE.md) - Detailed database architecture, design principles, and
   technical requirements
@@ -359,6 +411,6 @@ For questions about release history, version strategy, or to provide feedback:
 
 ---
 
-*Last Updated: 2026-03-13*
+*Last Updated: 2026-03-15*
 
 
