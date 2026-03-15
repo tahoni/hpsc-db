@@ -20,7 +20,7 @@ ALTER TABLE match_competitor
 ALTER TABLE ipsc_match
     MODIFY COLUMN scheduled_date DATETIME NOT NULL;
 
--- Align date_created/date_updated definitions with table_create_v1.0.0.sql (2026-02-23)
+-- Align date_created/date_updated definitions with table_create_v1.1.0.sql (2026-02-23)
 -- Ensure TIMESTAMP types with appropriate defaults across all relevant tables.
 
 -- Club table: ensure date_created/date_updated exist with TIMESTAMP defaults

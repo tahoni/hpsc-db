@@ -113,7 +113,7 @@ DEALLOCATE PREPARE stmt_drop_ipsc_match_name_unique;
   date
   markers
 - **SQL Scripts**: Enhanced `schema.sql` with proper user and schema creation for development and production
-- **SQL Scripts**: Updated `table_data.sql` with corrected club names for seed data
+- **SQL Scripts**: Updated `table_data_v1.1.0.sql` with corrected club names for seed data
 - **Licence**: Changed LICENCE.md from proprietary "All Rights Reserved" to MIT Licence for open source
   distribution
 - **Documentation**: Enhanced SUGGESTIONS.md with additional guidance on change management
@@ -175,9 +175,9 @@ ALTER TABLE match_competitor
 - **Database Schema**: Foreign key constraints for referential integrity
 - **Documentation**: Comprehensive `ARCHITECTURE.md` with design principles
 - **Documentation**: Enhanced `README.md` with project overview and quick start guide
-- **SQL Scripts**: `table_create_v1.0.0.sql` with complete table definitions
+- **SQL Scripts**: `table_create_v1.1.0.sql` with complete table definitions
 - **SQL Scripts**: `schema.sql` for database and user setup
-- **SQL Scripts**: `table_data.sql` with initial seed data for clubs
+- **SQL Scripts**: `table_data_v1.1.0.sql` with initial seed data for clubs
 
 ### Changed
 

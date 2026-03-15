@@ -35,7 +35,7 @@ tables.
 
 - Refreshed data updates for the `match` table
 - Updated schema generation and migration scripts:
-    - `scripts/table_create_v1.0.0.sql`
+    - `scripts/table_create_v1.1.0.sql`
     - `scripts/table_alter-v2.0.0.sql`
 
 **Removed**
@@ -70,7 +70,7 @@ tables.
 
 #### Migration Guide
 
-**For new environments:** Use `scripts/table_create_v1.0.0.sql`
+**For new environments:** Use `scripts/table_create_v1.1.0.sql`
 
 **For existing environments:** Apply `scripts/table_alter-v2.0.0.sql` against databases based on the `main`
 branch
