@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 📌 Table of Contents
 
 - [🧪 Unreleased](#-unreleased)
+- [🧾 3.1.0](#-310---2026-03-15)
 - [🧾 3.0.0](#-300---2026-03-13)
 - [🧾 2.0.1](#-201---2026-02-25)
 - [🧾 2.0.0](#-200---2026-02-23)
@@ -26,6 +27,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Stored procedures for computing match totals and populating log tables
 - Seed/demo data scripts for local development
 - Additional indexing optimisations for common query patterns
+
+---
+
+## 🧾 [3.1.0] - 2026-03-15
+
+### Added
+
+- **SQL Scripts**: Added `table_delete_ipsc_match_v3.0.0.sql` for transactional, foreign-key-safe deletion of
+  `ipsc_match` data and dependent match result records
+
+### Changed
+
+- **SQL Scripts**: Renamed `table_create_v1.0.0.sql` to `table_create_v1.1.0.sql` for version-aligned
+  baseline naming
+- **SQL Scripts**: Renamed `table_data.sql` to `table_data_v1.1.0.sql` for version-aligned seed data naming
+- **SQL Scripts**: Updated comment reference in `table_alter-v2.0.0.sql` from `table_create_v1.0.0.sql` to
+  `table_create_v1.1.0.sql`
+- **Documentation**: Updated script-name references in release-history files and changelog/history entries
+  to match renamed v1.1.0 scripts
+
+### Fixed
+
+- Inconsistent historical references to legacy script filenames across documentation and release notes
+
+### Breaking Changes
+
+- None.
+
+### Migration Notes
+
+- Update local automation and onboarding runbooks to use:
+    - `scripts/table_create_v1.1.0.sql`
+    - `scripts/table_data_v1.1.0.sql`
+- Use `scripts/table_delete_ipsc_match_v3.0.0.sql` for full match-data clean-up in v3.0.0 schema
+  environments.
 
 ---
 
@@ -48,14 +84,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking Changes
 
-- ⚠️ **`ipsc_match.name` is no longer globally unique** - applications must not rely on name-only uniqueness
+- ⚠️ **`ipsc_match.name` is no longer globally unique** – applications must not rely on name-only uniqueness
 
 ### Migration Notes
 
 ```sql
 -- Migration for version 3.0.0
 
--- Drop unique constraint/index on ipsc_match.name (if present)
+-- Drop the unique constraint/index on ipsc_match.name (if present)
 SET @ipsc_match_name_unique_idx := (SELECT s.INDEX_NAME
                                     FROM INFORMATION_SCHEMA.STATISTICS s
                                     WHERE s.TABLE_SCHEMA = DATABASE()
@@ -210,6 +246,7 @@ ALTER TABLE match_competitor
 
 ## 🔗 Version Comparison Links
 
+- 3.1.0 vs 3.0.0: `git log v3.0.0...v3.1.0`
 - 3.0.0 vs 2.0.1: `git log v2.0.1...v3.0.0`
 - 2.0.1 vs 2.0.0: `git log v2.0.0...v2.0.1`
 - 2.0.0 vs 1.1.0: `git log v1.1.0...v2.0.0`
@@ -246,7 +283,7 @@ When adding new versions to this changelog:
 
 ## 📚 Additional Resources
 
-- [Release Notes](RELEASE_NOTES.md) – Detailed release information for version 3.0.0
+- [Release Notes](RELEASE_NOTES.md) – Detailed release information for version 3.1.0
 - [Architecture Documentation](ARCHITECTURE.md) – Database architecture and design principles
 - [Project Overview](README.md) – Getting started and project introduction
 - [Improvement Suggestions](documentation/roadmap/SUGGESTIONS.md) - Future enhancements and roadmap

@@ -19,8 +19,10 @@ release context.
 
 ## 📚 Available Versions
 
-- **[v3.0.0](./RELEASE_NOTES_v3.0.0.md)** - Schema Maintenance & Migration Reliability (Mar 13, 2026) - *
-  *Stable**
+- **[v3.1.0](./RELEASE_NOTES_v3.1.0.md)** – Script Versioning & Match Data Maintenance (Mar 15, 2026) –
+  **Stable**
+- **[v3.0.0](./RELEASE_NOTES_v3.0.0.md)** – Schema Maintenance & Migration Reliability (Mar 13, 2026) –
+  **Archived**
 - **[v2.0.1](./RELEASE_NOTES_v2.0.1.md)** – Documentation & Release Hygiene (Feb 25, 2026) – **Archived**
 - **[v2.0.0](./RELEASE_NOTES_v2.0.0.md)** - Schema Refinement & Data Integrity (Feb 23, 2026) - **Archived**
 - **[v1.1.0](./RELEASE_NOTES_v1.1.0.md)** – Enhanced Schema & Documentation (Jan 28, 2026) – **Archived**
@@ -30,7 +32,8 @@ release context.
 
 | Version   | Date         | Theme                                      | Status   | Breaking Changes |
 |-----------|--------------|--------------------------------------------|----------|------------------|
-| **3.0.0** | Mar 13, 2026 | Schema Maintenance & Migration Reliability | Stable   | ⚠️ Yes           |
+| **3.1.0** | Mar 15, 2026 | Script Versioning & Match Data Maintenance | Stable   | ✅ No             |
+| **3.0.0** | Mar 13, 2026 | Schema Maintenance & Migration Reliability | Archived | ⚠️ Yes           |
 | **2.0.1** | Feb 25, 2026 | Documentation & Release Hygiene            | Archived | ✅ No             |
 | **2.0.0** | Feb 23, 2026 | Schema Refinement & Data Integrity         | Archived | ⚠️ Yes           |
 | **1.1.0** | Jan 28, 2026 | Enhanced Schema & Documentation            | Archived | ✅ No             |
@@ -38,6 +41,7 @@ release context.
 
 ## ⚠️ Breaking Changes Overview
 
+- **v3.1.0** – No breaking changes introduced
 - **v3.0.0** - `ipsc_match.name` is no longer globally unique
 - **v2.0.0** – Removed redundant `club` columns and enforced `club_id` joins
 
@@ -52,7 +56,7 @@ release context.
 ## 📝 Document Metadata
 
 - **Created:** February 24, 2026
-- **Last Updated:** March 13, 2026
-- **Coverage:** v1.0.0 – v3.0.0 (5 releases)
-- **Total Files:** 7 documentation files
+- **Last Updated:** March 15, 2026
+- **Coverage:** v1.0.0 – v3.1.0 (6 releases)
+- **Total Files:** 8 documentation files
 
