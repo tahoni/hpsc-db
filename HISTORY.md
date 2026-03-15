@@ -213,7 +213,7 @@ the architectural direction for future enhancements.
 
 ### 📋 Major Changes
 
-- **New**: Complete table definitions in `table_create_v1.0.0.sql`
+- **New**: Complete table definitions in `table_create_v1.1.0.sql`
 - **New**: Foreign key constraints for referential integrity
 - **New**: Comprehensive architecture documentation
 - **Improved**: Enhanced README with a quick start guide
