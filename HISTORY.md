@@ -31,7 +31,7 @@ themes and objectives for each version.
 
 ### ✨ Release Theme
 
-This release focuses on **version-aligned SQL script naming** and **safe operational match-data cleanup**.
+This release focuses on **version-aligned SQL script naming** and **safe operational match-data clean-up**.
 The primary objective is to improve script discoverability and reduce maintenance friction across
 documentation, onboarding, and automation workflows.
 
@@ -89,7 +89,7 @@ for repeatable setup and testing.
 1. **Relax Constraint Behavior**: Remove global uniqueness enforcement on `ipsc_match.name`
 2. **Improve Migration Safety**: Use dynamic index-name resolution before applying `DROP INDEX`
 3. **Support Environment Resets**: Provide FK-safe drop scripts for current and legacy schemas
-4. **Keep Release Artifacts Aligned**: Synchronise root and historical release documentation
+4. **Keep Release Artefacts Aligned**: Synchronise root and historical release documentation
 
 ### 📖 Why This Release Matters
 
