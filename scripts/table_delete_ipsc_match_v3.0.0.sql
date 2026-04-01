@@ -2,7 +2,7 @@
 # 2026-03-14
 #---------------------------------------------------------------------------------------------------
 
--- Delete all match data in foreign-key-safe order for schema v3.0.0
+-- Delete all match and competitor data in foreign-key-safe order for schema v3.0.0
 START TRANSACTION;
 
 DELETE msc
@@ -13,6 +13,10 @@ FROM match_stage_competitor msc
 DELETE mc
 FROM match_competitor mc
          INNER JOIN ipsc_match im ON im.id = mc.match_id;
+
+DELETE c
+FROM competitor c
+         INNER JOIN (SELECT id FROM competitor) competitors_to_delete ON competitors_to_delete.id = c.id;
 
 DELETE ims
 FROM ipsc_match_stage ims
