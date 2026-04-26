@@ -53,10 +53,10 @@ environments, which is especially useful for test resets and operational mainten
 
 ### 📋 Major Changes
 
-- **New**: Added `table_delete_ipsc_match_v3.0.0.sql` for transactional, FK-safe deletion of `ipsc_match`
+- **New**: Added `table_delete-ipsc_match-v3.0.0.sql` for transactional, FK-safe deletion of `ipsc_match`
   and dependent match-result data
-- **Changed**: Renamed `table_create_v1.0.0.sql` to `table_create_v1.1.0.sql`
-- **Changed**: Renamed `table_data.sql` to `table_data_v1.1.0.sql`
+- **Changed**: Renamed `table_create_v1.0.0.sql` to `table_create-v1.1.0.sql`
+- **Changed**: Renamed `table_data.sql` to `table_data-v1.1.0.sql`
 - **Improved**: Updated script references in release documentation and changelog/history entries
 
 ### ⚠️ Impact
@@ -103,8 +103,8 @@ repeatable and explicit.
 ### 📋 Major Changes
 
 - **Breaking**: `ipsc_match.name` is no longer globally unique
-- **New**: `table_drop_v3.0.0.sql` for FK-safe teardown of v3.0.0 schema tables
-- **New**: `table_drop_v3.0.0.sql` for FK-safe teardown of v1.0.0 schema tables
+- **New**: `table_drop-v3.0.0.sql` for FK-safe teardown of v3.0.0 schema tables
+- **New**: `table_drop-v3.0.0.sql` for FK-safe teardown of v1.0.0 schema tables
 - **Improved**: The v3.0.0 migration uses metadata-driven index resolution for safer migration execution
 
 ### ⚠️ Impact
@@ -263,7 +263,7 @@ the architectural direction for future enhancements.
 
 ### 📋 Major Changes
 
-- **New**: Complete table definitions in `table_create_v1.1.0.sql`
+- **New**: Complete table definitions in `table_create-v1.1.0.sql`
 - **New**: Foreign key constraints for referential integrity
 - **New**: Comprehensive architecture documentation
 - **Improved**: Enhanced README with a quick start guide

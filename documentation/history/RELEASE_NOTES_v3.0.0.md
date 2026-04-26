@@ -25,8 +25,8 @@ versioned schema teardown workflows.
 
 ### 🧰 SQL Script Additions
 
-- **New script**: Added `scripts/table_drop_v3.0.0.sql` for foreign-key-safe teardown of v3.0.0 tables
-- **Backfill support**: Added `scripts/table_drop_v3.0.0.sql` for complete teardown of legacy v1.0.0 tables
+- **New script**: Added `scripts/table_drop-v3.0.0.sql` for foreign-key-safe teardown of v3.0.0 tables
+- **Backfill support**: Added `scripts/table_drop-v3.0.0.sql` for complete teardown of legacy v1.0.0 tables
 
 ---
 
@@ -52,9 +52,9 @@ versioned schema teardown workflows.
 
 - v3.0.0 migration update
     - Drops the unique index/constraint on `ipsc_match.name` when present
-- `scripts/table_drop_v3.0.0.sql`
+- `scripts/table_drop-v3.0.0.sql`
     - Adds FK-safe drop order for current schema tables
-- `scripts/table_drop_v3.0.0.sql`
+- `scripts/table_drop-v3.0.0.sql`
     - Adds FK-safe drop order for v1.0.0 schema tables
 
 ---
@@ -63,7 +63,7 @@ versioned schema teardown workflows.
 
 ### For New Installations
 
-- Apply `scripts/table_create_v3.0.0.sql`
+- Apply `scripts/table_create-v3.0.0.sql`
 - Use the v3.0.0 migration step when upgrading from schemas that still enforce uniqueness on
   `ipsc_match.name`
 

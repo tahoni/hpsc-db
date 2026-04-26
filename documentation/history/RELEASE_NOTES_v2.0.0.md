@@ -52,9 +52,9 @@ improved referential integrity, and streamlined schema management.
 
 - **`table_alter-v2.0.0.sql`**: Consolidated schema modification scripts with clear date markers for change
   tracking
-- **`table_create_v1.1.0.sql`**: Maintained comprehensive table creation scripts with proper foreign key
+- **`table_create-v1.1.0.sql`**: Maintained comprehensive table creation scripts with proper foreign key
   constraints
-- **`table_data_v1.1.0.sql`**: Updated seed data with corrected club names
+- **`table_data-v1.1.0.sql`**: Updated seed data with corrected club names
 - **`schema.sql`**: Enhanced with proper user and schema creation for both development and production
   environments
 
@@ -180,9 +180,9 @@ FROM ipsc_match m
 #### Schema Scripts Updated
 
 - `scripts/schema.sql`: Database and user creation with proper permissions
-- `scripts/table_create_v1.1.0.sql`: Core table definitions with foreign key constraints
+- `scripts/table_create-v1.1.0.sql`: Core table definitions with foreign key constraints
 - `scripts/table_alter-v2.0.0.sql`: Chronological schema modifications
-- `scripts/table_data_v1.1.0.sql`: Updated seed data for clubs
+- `scripts/table_data-v1.1.0.sql`: Updated seed data for clubs
 
 ### Dependencies
 
@@ -200,8 +200,8 @@ FROM ipsc_match m
 ### For New Installations
 
 1. Run `scripts/schema.sql` to create databases and users
-2. Run `scripts/table_create_v1.1.0.sql` to create all tables
-3. Run `scripts/table_data_v1.1.0.sql` to insert initial seed data
+2. Run `scripts/table_create-v1.1.0.sql` to create all tables
+3. Run `scripts/table_data-v1.1.0.sql` to insert initial seed data
 
 ### For Existing Installations
 

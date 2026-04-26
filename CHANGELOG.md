@@ -34,16 +34,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **SQL Scripts**: Added `table_delete_ipsc_match_v3.0.0.sql` for transactional, foreign-key-safe deletion of
+- **SQL Scripts**: Added `table_delete-ipsc_match-v3.0.0.sql` for transactional, foreign-key-safe deletion of
   `ipsc_match` data and dependent match result records
 
 ### Changed
 
-- **SQL Scripts**: Renamed `table_create_v1.0.0.sql` to `table_create_v1.1.0.sql` for version-aligned
+- **SQL Scripts**: Renamed `table_create_v1.0.0.sql` to `table_create-v1.1.0.sql` for version-aligned
   baseline naming
-- **SQL Scripts**: Renamed `table_data.sql` to `table_data_v1.1.0.sql` for version-aligned seed data naming
+- **SQL Scripts**: Renamed `table_data.sql` to `table_data-v1.1.0.sql` for version-aligned seed data naming
 - **SQL Scripts**: Updated comment reference in `table_alter-v2.0.0.sql` from `table_create_v1.0.0.sql` to
-  `table_create_v1.1.0.sql`
+  `table_create-v1.1.0.sql`
 - **Documentation**: Updated script-name references in release-history files and changelog/history entries
   to match renamed v1.1.0 scripts
 
@@ -58,9 +58,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Migration Notes
 
 - Update local automation and onboarding runbooks to use:
-    - `scripts/table_create_v1.1.0.sql`
-    - `scripts/table_data_v1.1.0.sql`
-- Use `scripts/table_delete_ipsc_match_v3.0.0.sql` for full match-data clean-up in v3.0.0 schema
+    - `scripts/table_create-v1.1.0.sql`
+    - `scripts/table_data-v1.1.0.sql`
+- Use `scripts/table_delete-ipsc_match-v3.0.0.sql` for full match-data clean-up in v3.0.0 schema
   environments.
 
 ---
@@ -69,8 +69,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **SQL Scripts**: Added `table_drop_v3.0.0.sql` for foreign-key-safe teardown of current schema tables
-- **SQL Scripts**: Added `table_drop_v3.0.0.sql` for foreign-key-safe teardown of legacy v1.0.0 tables
+- **SQL Scripts**: Added `table_drop-v3.0.0.sql` for foreign-key-safe teardown of current schema tables
+- **SQL Scripts**: Added `table_drop-v3.0.0.sql` for foreign-key-safe teardown of legacy v1.0.0 tables
 
 ### Changed
 
@@ -149,7 +149,7 @@ DEALLOCATE PREPARE stmt_drop_ipsc_match_name_unique;
   date
   markers
 - **SQL Scripts**: Enhanced `schema.sql` with proper user and schema creation for development and production
-- **SQL Scripts**: Updated `table_data_v1.1.0.sql` with corrected club names for seed data
+- **SQL Scripts**: Updated `table_data-v1.1.0.sql` with corrected club names for seed data
 - **Licence**: Changed LICENCE.md from proprietary "All Rights Reserved" to MIT Licence for open source
   distribution
 - **Documentation**: Enhanced SUGGESTIONS.md with additional guidance on change management
@@ -211,9 +211,9 @@ ALTER TABLE match_competitor
 - **Database Schema**: Foreign key constraints for referential integrity
 - **Documentation**: Comprehensive `ARCHITECTURE.md` with design principles
 - **Documentation**: Enhanced `README.md` with project overview and quick start guide
-- **SQL Scripts**: `table_create_v1.1.0.sql` with complete table definitions
+- **SQL Scripts**: `table_create-v1.1.0.sql` with complete table definitions
 - **SQL Scripts**: `schema.sql` for database and user setup
-- **SQL Scripts**: `table_data_v1.1.0.sql` with initial seed data for clubs
+- **SQL Scripts**: `table_data-v1.1.0.sql` with initial seed data for clubs
 
 ### Changed
 
