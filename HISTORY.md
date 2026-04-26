@@ -7,6 +7,7 @@ themes and objectives for each version.
 
 ## 📌 Table of Contents
 
+- [🧭 Version 3.2.0 - SQL Script Naming Consistency & Data Maintenance Enhancements](#-version-320---sql-script-naming-consistency--data-maintenance-enhancements)
 - [🧭 Version 3.1.0 - Script Version Alignment & Match Data Maintenance](#-version-310---script-version-alignment--match-data-maintenance)
 - [🧭 Version 3.0.0 - Schema Maintenance & Migration Reliability](#-version-300---schema-maintenance--migration-reliability)
 - [🧭 Version 2.0.1 - Documentation & Release Hygiene](#-version-201---documentation--release-hygiene)
@@ -21,6 +22,58 @@ themes and objectives for each version.
     - [🔭 Long-term Vision](#-long-term-vision)
 - [🔗 Additional Resources](#-additional-resources)
 - [💬 Questions or Feedback?](#-questions-or-feedback)
+
+---
+
+## 🧭 Version 3.2.0 - SQL Script Naming Consistency & Data Maintenance Enhancements
+
+**Released:** April 26, 2026  
+**Type:** Minor Release (Operational Improvement)
+
+### ✨ Release Theme
+
+This release focuses on **consistent SQL script file naming** and **extended operational data clean-up**.
+The primary objective is to eliminate underscore/hyphen ambiguity in version-suffixed script filenames,
+expand the match-data deletion workflow to cover competitor records, and introduce the v4.0.0 migration
+script for a uniqueness constraint on competitor SAPSA numbers.
+
+### 🎯 Key Objectives
+
+1. **Standardise Script File Naming**: Rename all version-suffixed scripts to use hyphens consistently
+2. **Extend Data Clean-up Scope**: Update the deletion workflow to delete competitor rows alongside match data
+3. **Prepare v4.0.0 Migration**: Stage the script adding a unique constraint on `competitor.sapsa_number`
+4. **Keep Documentation Consistent**: Update all references to reflect renamed script filenames
+
+### 📖 Why This Release Matters
+
+Version 3.2.0 removes a naming inconsistency that existed across all versioned SQL scripts. With hyphens
+now used consistently in version suffixes (e.g., `table_create-v1.1.0.sql`), scripts are easier to locate
+and reference in automation, onboarding runbooks, and documentation.
+
+The extended deletion scope in `table_delete-ipsc_match-v3.0.0.sql` provides a more complete operational
+reset by also clearing competitor rows, making the script more useful for full environment teardowns and
+test resets.
+
+### 📋 Major Changes
+
+- **Changed**: Renamed all version-suffixed scripts from underscore to hyphen convention (5 scripts)
+- **Improved**: `table_delete-ipsc_match-v3.0.0.sql` extended to also delete all `competitor` rows
+- **New**: Added `table_alter-v4..0.0.sql` to add `uk_competitor_sapsa_number` unique constraint on
+  `competitor.sapsa_number`
+- **Improved**: Updated all documentation references to use the renamed script filenames
+
+### ⚠️ Impact
+
+No breaking schema changes are introduced. Existing environments must update automation, setup guides, and
+local runbooks to reference the renamed script files. Any automation relying on
+`table_delete-ipsc_match-v3.0.0.sql` should be reviewed, as it now also deletes all `competitor` rows.
+
+### 🔗 Related Documentation
+
+- [Full Release Notes](RELEASE_NOTES.md) – Complete details for version 3.2.0
+- [Versioned Release Notes](documentation/history/RELEASE_NOTES_v3.2.0.md) – Archived release notes in the
+  history directory
+- [Changelog Entry](CHANGELOG.md#-320---2026-04-26) – Categorised list of all changes
 
 ---
 
@@ -357,6 +410,8 @@ v1.0.0 (2025-12-28) ─── Initial Release
                         └─> v3.0.0 (2026-03-13) ─── Migration Reliability
                                │
                                └─> v3.1.0 (2026-03-15) ─── Script Alignment & Data Maintenance
+                                      │
+                                      └─> v3.2.0 (2026-04-26) ─── Script Naming Consistency & Data Maintenance Enhancements
 ```
 
 ---
@@ -389,7 +444,7 @@ practical shooting clubs worldwide, supporting:
 
 - [Changelog](CHANGELOG.md) – Detailed, categorised list of changes for each version following Keep a
   Changelog format
-- [Release Notes](RELEASE_NOTES.md) – Comprehensive release information for version 3.1.0 with upgrade guides
+- [Release Notes](RELEASE_NOTES.md) – Comprehensive release information for version 3.2.0 with upgrade guides
   and breaking changes
 - [Architecture Documentation](ARCHITECTURE.md) - Detailed database architecture, design principles, and
   technical requirements
@@ -411,6 +466,6 @@ For questions about release history, version strategy, or to provide feedback:
 
 ---
 
-*Last Updated: 2026-03-15*
+*Last Updated: 2026-04-26*
 
 

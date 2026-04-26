@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 📌 Table of Contents
 
 - [🧪 Unreleased](#-unreleased)
+- [🧾 3.2.0](#-320---2026-04-26)
 - [🧾 3.1.0](#-310---2026-03-15)
 - [🧾 3.0.0](#-300---2026-03-13)
 - [🧾 2.0.1](#-201---2026-02-25)
@@ -27,6 +28,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Stored procedures for computing match totals and populating log tables
 - Seed/demo data scripts for local development
 - Additional indexing optimisations for common query patterns
+
+---
+
+## 🧾 [3.2.0] - 2026-04-26
+
+### Added
+
+- **SQL Scripts**: Added `table_alter-v4..0.0.sql` for schema v4.0.0 migration — adds
+  `uk_competitor_sapsa_number` unique constraint on `competitor.sapsa_number`
+
+### Changed
+
+- **SQL Scripts**: Renamed `table_create_v1.1.0.sql` to `table_create-v1.1.0.sql` for consistent
+  hyphen-separated version naming
+- **SQL Scripts**: Renamed `table_create_v3.0.0.sql` to `table_create-v3.0.0.sql` for consistent
+  hyphen-separated version naming
+- **SQL Scripts**: Renamed `table_data_v1.1.0.sql` to `table_data-v1.1.0.sql` for consistent
+  hyphen-separated version naming
+- **SQL Scripts**: Renamed `table_delete_ipsc_match_v3.0.0.sql` to `table_delete-ipsc_match-v3.0.0.sql`
+  for consistent hyphen-separated version naming
+- **SQL Scripts**: Renamed `table_drop_v3.0.0.sql` to `table_drop-v3.0.0.sql` for consistent
+  hyphen-separated version naming
+- **SQL Scripts**: Extended `table_delete-ipsc_match-v3.0.0.sql` to also delete all `competitor` rows
+  within the same transaction
+- **SQL Scripts**: Updated comment reference in `table_alter-v2.0.0.sql` from `table_create_v1.1.0.sql`
+  to `table_create-v1.1.0.sql`
+- **Documentation**: Updated script-name references across `CHANGELOG.md`, `HISTORY.md`,
+  `documentation/archive/ARCHIVE.md`, and all historical versioned release notes
+
+### Fixed
+
+- Inconsistent script filename references using underscores instead of hyphens across all documentation
+  and historical release notes
+
+### Breaking Changes
+
+- None.
+
+### Migration Notes
+
+- Update local automation and onboarding runbooks to use the renamed scripts:
+    - `scripts/table_create-v1.1.0.sql`
+    - `scripts/table_create-v3.0.0.sql`
+    - `scripts/table_data-v1.1.0.sql`
+    - `scripts/table_delete-ipsc_match-v3.0.0.sql`
+    - `scripts/table_drop-v3.0.0.sql`
+- Note that `scripts/table_delete-ipsc_match-v3.0.0.sql` now also deletes all `competitor` rows — review
+  any automation relying on this script for data scope changes.
 
 ---
 
@@ -246,6 +295,7 @@ ALTER TABLE match_competitor
 
 ## 🔗 Version Comparison Links
 
+- 3.2.0 vs 3.1.0: `git log v3.1.0...v3.2.0`
 - 3.1.0 vs 3.0.0: `git log v3.0.0...v3.1.0`
 - 3.0.0 vs 2.0.1: `git log v2.0.1...v3.0.0`
 - 2.0.1 vs 2.0.0: `git log v2.0.0...v2.0.1`
@@ -283,7 +333,7 @@ When adding new versions to this changelog:
 
 ## 📚 Additional Resources
 
-- [Release Notes](RELEASE_NOTES.md) – Detailed release information for version 3.1.0
+- [Release Notes](RELEASE_NOTES.md) – Detailed release information for version 3.2.0
 - [Architecture Documentation](ARCHITECTURE.md) – Database architecture and design principles
 - [Project Overview](README.md) – Getting started and project introduction
 - [Improvement Suggestions](documentation/roadmap/SUGGESTIONS.md) - Future enhancements and roadmap
