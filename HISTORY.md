@@ -34,14 +34,14 @@ themes and objectives for each version.
 
 This release focuses on **consistent SQL script file naming** and **extended operational data clean-up**.
 The primary objective is to eliminate underscore/hyphen ambiguity in version-suffixed script filenames,
-expand the match-data deletion workflow to cover competitor records, and introduce the v4.0.0 migration
-script for a uniqueness constraint on competitor SAPSA numbers.
+expand the match-data deletion workflow to cover competitor records, and enforce uniqueness on competitor
+SAPSA numbers.
 
 ### 🎯 Key Objectives
 
 1. **Standardise Script File Naming**: Rename all version-suffixed scripts to use hyphens consistently
 2. **Extend Data Clean-up Scope**: Update the deletion workflow to delete competitor rows alongside match data
-3. **Prepare v4.0.0 Migration**: Stage the script adding a unique constraint on `competitor.sapsa_number`
+3. **Enforce Competitor Uniqueness**: Add a UNIQUE constraint on `competitor.sapsa_number`
 4. **Keep Documentation Consistent**: Update all references to reflect renamed script filenames
 
 ### 📖 Why This Release Matters
@@ -52,13 +52,14 @@ and reference in automation, onboarding runbooks, and documentation.
 
 The extended deletion scope in `table_delete-ipsc_match-v3.0.0.sql` provides a more complete operational
 reset by also clearing competitor rows, making the script more useful for full environment teardowns and
-test resets.
+test resets. The new `table_alter-v3.2.0.sql` enforces uniqueness on `competitor.sapsa_number`, aligning
+the schema with real-world SAPSA membership number uniqueness requirements.
 
 ### 📋 Major Changes
 
 - **Changed**: Renamed all version-suffixed scripts from underscore to hyphen convention (5 scripts)
 - **Improved**: `table_delete-ipsc_match-v3.0.0.sql` extended to also delete all `competitor` rows
-- **New**: Added `table_alter-v4..0.0.sql` to add `uk_competitor_sapsa_number` unique constraint on
+- **New**: Added `table_alter-v3.2.0.sql` to add `uk_competitor_sapsa_number` UNIQUE constraint on
   `competitor.sapsa_number`
 - **Improved**: Updated all documentation references to use the renamed script filenames
 

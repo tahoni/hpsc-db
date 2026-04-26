@@ -11,8 +11,7 @@
 
 This release standardises SQL script file naming by replacing underscores with hyphens in version
 suffixes for consistency across all scripts. The match-data deletion workflow is extended to include
-competitor data, a forward-looking migration script for schema v4.0.0 is added, and all documentation
-references are updated to reflect the renamed scripts.
+competitor data, and all documentation references are updated to reflect the renamed scripts.
 
 ---
 
@@ -20,8 +19,8 @@ references are updated to reflect the renamed scripts.
 
 ### 🧰 SQL Script Additions
 
-- **New script**: Added `scripts/table_alter-v4..0.0.sql` to add a `UNIQUE` constraint on
-  `competitor.sapsa_number` for the schema v4.0.0 migration.
+- **New script**: Added `scripts/table_alter-v3.2.0.sql` to add a `UNIQUE` constraint on
+  `competitor.sapsa_number`.
 
 ### 📝 SQL Script Renames
 
@@ -62,8 +61,8 @@ All version-suffixed scripts have been renamed from underscore to hyphen convent
 
 - `scripts/table_delete-ipsc_match-v3.0.0.sql`
     - Added deletion of all `competitor` rows within the same transaction
-- `scripts/table_alter-v4..0.0.sql` *(new)*
-    - Adds `uk_competitor_sapsa_number` unique constraint on `competitor.sapsa_number`
+- `scripts/table_alter-v3.2.0.sql` *(new)*
+    - Adds `uk_competitor_sapsa_number` UNIQUE constraint on `competitor.sapsa_number`
 - `scripts/table_alter-v2.0.0.sql`
     - Updated internal comment reference from `table_create_v1.1.0.sql` to `table_create-v1.1.0.sql`
 

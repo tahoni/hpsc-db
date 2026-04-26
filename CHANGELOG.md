@@ -35,8 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **SQL Scripts**: Added `table_alter-v4..0.0.sql` for schema v4.0.0 migration — adds
-  `uk_competitor_sapsa_number` unique constraint on `competitor.sapsa_number`
+- **SQL Scripts**: Added `table_alter-v3.2.0.sql` — adds `uk_competitor_sapsa_number` UNIQUE constraint
+  on `competitor.sapsa_number`
 
 ### Changed
 
