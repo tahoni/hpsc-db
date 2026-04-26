@@ -19,15 +19,15 @@ with the renamed v1.1.0 baseline scripts.
 
 ### 🧰 SQL Script Additions
 
-- **New script**: Added `scripts/table_delete_ipsc_match_v3.0.0.sql` for transactional, foreign-key-safe
+- **New script**: Added `scripts/table_delete-ipsc_match-v3.0.0.sql` for transactional, foreign-key-safe
   deletion of `ipsc_match` and dependent match-result data.
 
 ### 📝 Script Reference Alignment
 
 - **Versioned script naming**: Renamed `scripts/table_create_v1.0.0.sql` to
-  `scripts/table_create_v1.1.0.sql`
+  `scripts/table_create-v1.1.0.sql`
 - **Versioned seed script naming**: Renamed `scripts/table_data.sql` to
-  `scripts/table_data_v1.1.0.sql`
+  `scripts/table_data-v1.1.0.sql`
 
 ---
 
@@ -50,13 +50,13 @@ with the renamed v1.1.0 baseline scripts.
 
 ### Database Changes
 
-- `scripts/table_delete_ipsc_match_v3.0.0.sql`
+- `scripts/table_delete-ipsc_match-v3.0.0.sql`
     - Deletes `match_stage_competitor` rows linked to `ipsc_match`
     - Deletes `match_competitor` rows linked to `ipsc_match`
     - Deletes `ipsc_match_stage` rows linked to `ipsc_match`
     - Deletes `ipsc_match` rows within a single transaction (`START TRANSACTION` / `COMMIT`)
 - `scripts/table_alter-v2.0.0.sql`
-    - Updated script reference comment to `table_create_v1.1.0.sql`
+    - Updated script reference comment to `table_create-v1.1.0.sql`
 - Historical documentation updates
     - Updated script names in `CHANGELOG.md`, `HISTORY.md`,
       `documentation/history/RELEASE_NOTES_v1.1.0.md`, and
@@ -68,16 +68,16 @@ with the renamed v1.1.0 baseline scripts.
 
 ### For New Installations
 
-- Apply `scripts/table_create_v1.1.0.sql` for base schema creation.
+- Apply `scripts/table_create-v1.1.0.sql` for base schema creation.
 - Apply subsequent migration scripts (including v2.0.0 and v3.1.0 changes) as required.
 
 ### For Existing Installations
 
 1. Back up your database.
 2. Update local automation/scripts to use:
-    - `scripts/table_create_v1.1.0.sql`
-    - `scripts/table_data_v1.1.0.sql`
-3. Use `scripts/table_delete_ipsc_match_v3.0.0.sql` when a full match-data reset is required.
+    - `scripts/table_create-v1.1.0.sql`
+    - `scripts/table_data-v1.1.0.sql`
+3. Use `scripts/table_delete-ipsc_match-v3.0.0.sql` when a full match-data reset is required.
 
 ---
 

@@ -19,8 +19,10 @@ release context.
 
 ## 📚 Available Versions
 
+- **[v3.2.0](./RELEASE_NOTES_v3.2.0.md)** – SQL Script Naming Consistency & Data Maintenance Enhancements
+  (Apr 26, 2026) – **Stable**
 - **[v3.1.0](./RELEASE_NOTES_v3.1.0.md)** – Script Versioning & Match Data Maintenance (Mar 15, 2026) –
-  **Stable**
+  **Archived**
 - **[v3.0.0](./RELEASE_NOTES_v3.0.0.md)** – Schema Maintenance & Migration Reliability (Mar 13, 2026) –
   **Archived**
 - **[v2.0.1](./RELEASE_NOTES_v2.0.1.md)** – Documentation & Release Hygiene (Feb 25, 2026) – **Archived**
@@ -30,17 +32,19 @@ release context.
 
 ## 📊 Version Summary
 
-| Version   | Date         | Theme                                      | Status   | Breaking Changes |
-|-----------|--------------|--------------------------------------------|----------|------------------|
-| **3.1.0** | Mar 15, 2026 | Script Versioning & Match Data Maintenance | Stable   | ✅ No             |
-| **3.0.0** | Mar 13, 2026 | Schema Maintenance & Migration Reliability | Archived | ⚠️ Yes           |
-| **2.0.1** | Feb 25, 2026 | Documentation & Release Hygiene            | Archived | ✅ No             |
-| **2.0.0** | Feb 23, 2026 | Schema Refinement & Data Integrity         | Archived | ⚠️ Yes           |
-| **1.1.0** | Jan 28, 2026 | Enhanced Schema & Documentation            | Archived | ✅ No             |
-| **1.0.0** | Dec 28, 2025 | Initial Release                            | Archived | N/A              |
+| Version   | Date         | Theme                                                         | Status   | Breaking Changes |
+|-----------|--------------|---------------------------------------------------------------|----------|------------------|
+| **3.2.0** | Apr 26, 2026 | SQL Script Naming Consistency & Data Maintenance Enhancements | Stable   | ✅ No             |
+| **3.1.0** | Mar 15, 2026 | Script Versioning & Match Data Maintenance                    | Archived | ✅ No             |
+| **3.0.0** | Mar 13, 2026 | Schema Maintenance & Migration Reliability                    | Archived | ⚠️ Yes           |
+| **2.0.1** | Feb 25, 2026 | Documentation & Release Hygiene                               | Archived | ✅ No             |
+| **2.0.0** | Feb 23, 2026 | Schema Refinement & Data Integrity                            | Archived | ⚠️ Yes           |
+| **1.1.0** | Jan 28, 2026 | Enhanced Schema & Documentation                               | Archived | ✅ No             |
+| **1.0.0** | Dec 28, 2025 | Initial Release                                               | Archived | N/A              |
 
 ## ⚠️ Breaking Changes Overview
 
+- **v3.2.0** – No breaking changes introduced
 - **v3.1.0** – No breaking changes introduced
 - **v3.0.0** - `ipsc_match.name` is no longer globally unique
 - **v2.0.0** – Removed redundant `club` columns and enforced `club_id` joins
@@ -56,7 +60,6 @@ release context.
 ## 📝 Document Metadata
 
 - **Created:** February 24, 2026
-- **Last Updated:** March 15, 2026
-- **Coverage:** v1.0.0 – v3.1.0 (6 releases)
-- **Total Files:** 8 documentation files
-
+- **Last Updated:** April 26, 2026
+- **Coverage:** v1.0.0 – v3.2.0 (7 releases)
+- **Total Files:** 9 documentation files
