@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 📌 Table of Contents
 
 - [🧪 Unreleased](#-unreleased)
+- [🧾 4.0.0](#-400---2026-05-31)
 - [🧾 3.2.0](#-320---2026-04-26)
 - [🧾 3.1.0](#-310---2026-03-15)
 - [🧾 3.0.0](#-300---2026-03-13)
@@ -28,6 +29,58 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Stored procedures for computing match totals and populating log tables
 - Seed/demo data scripts for local development
 - Additional indexing optimisations for common query patterns
+
+---
+
+## 🧾 [4.0.0] - 2026-05-31
+
+### Added
+
+- **SQL Scripts**: Added `table_create-v4.0.0.sql` — comprehensive, freshly versioned schema creation script
+  for v4.0.0 implementations
+- **SQL Scripts**: Added `table_alter-v4.0.0.sql` — migration script extending the competitor table with
+  7 new contact and identification fields
+- **SQL Scripts**: Added `table_data-v4.0.0.sql` — comprehensive seed data with 200+ competitor records
+  including full contact details and SAPSA membership information
+- **Database Schema**: Added 7 new columns to `competitor` table:
+  - `nickname` — Optional nickname/short name
+  - `gender` — Gender classification
+  - `club_number` — Club-specific competitor number (unique constraint: `uk_competitor_club_number`)
+  - `id_number` — National identity/passport number
+  - `cellphone_number` — Primary mobile phone contact
+  - `email_address` — Primary email address
+  - `secondary_email_address` — Secondary email address
+
+### Changed
+
+- **SQL Scripts**: Updated `table_alter-v3.2.0.sql` with clear date markers and descriptive comments
+
+### Improved
+
+- **Competitor Information Management**: Extended competitor profiles support comprehensive contact and
+  identification tracking for compliance and multichannel communication
+- **Schema Versioning**: Fresh v4.0.0 schema creation eliminates the need for sequential migration script
+  application for new deployments
+- **Competitor Coverage**: Pre-loaded 200+ competitor records with verified SAPSA membership information
+  for immediate operational readiness
+
+### Breaking Changes
+
+- None.
+
+### Migration Notes
+
+For existing installations upgrading from v3.2.0:
+
+1. Back up your database
+2. Apply the migration script: `scripts/table_alter-v4.0.0.sql`
+3. (Optional) Merge competitor data from `scripts/table_data-v4.0.0.sql`:
+    - Review seed data to avoid SAPSA number or club number duplicates
+    - Insert only new competitor records relevant to your environment
+
+For new v4.0.0 installations:
+- Use `scripts/table_create-v4.0.0.sql` for direct schema creation
+- (Optional) Use `scripts/table_data-v4.0.0.sql` for preloaded competitor seed data
 
 ---
 
@@ -275,7 +328,7 @@ ALTER TABLE match_competitor
 
 ### Added
 
-- **Initial Release**: HPSC Database project initialization
+- **Initial Release**: HPSC Database project initialisation
 - **Database Schema**: Core tables for clubs, competitors, matches, and stages
 - **Database Schema**: Result tracking tables for match and stage performance
 - **Database Schema**: Logging tables for derived standings
@@ -295,6 +348,7 @@ ALTER TABLE match_competitor
 
 ## 🔗 Version Comparison Links
 
+- 4.0.0 vs 3.2.0: `git log v3.2.0...v4.0.0`
 - 3.2.0 vs 3.1.0: `git log v3.1.0...v3.2.0`
 - 3.1.0 vs 3.0.0: `git log v3.0.0...v3.1.0`
 - 3.0.0 vs 2.0.1: `git log v2.0.1...v3.0.0`
@@ -310,12 +364,12 @@ When adding new versions to this changelog:
 
 1. Add a new section under [Unreleased](#-unreleased) with the format: `## [X.Y.Z] - YYYY-MM-DD`
 2. Move relevant items from the Unreleased section to the new version
-3. Organize changes under appropriate categories:
+3. Organise changes under appropriate categories:
     - **Added** – New features or functionality
     - **Changed** – Changes to existing functionality
     - **Deprecated** – Features marked for removal in future versions
     - **Removed** – Features removed in this version
-    - **Fixed** - Bug fixes
+    - **Fixed** – Bug fixes
     - **Security** – Security vulnerability fixes
     - **Breaking Changes** – Changes that break backward compatibility
     - **Migration Notes** – SQL or code changes required for upgrading
@@ -336,7 +390,7 @@ When adding new versions to this changelog:
 - [Release Notes](RELEASE_NOTES.md) – Detailed release information for version 3.2.0
 - [Architecture Documentation](ARCHITECTURE.md) – Database architecture and design principles
 - [Project Overview](README.md) – Getting started and project introduction
-- [Improvement Suggestions](documentation/roadmap/SUGGESTIONS.md) - Future enhancements and roadmap
+- [Improvement Suggestions](documentation/roadmap/SUGGESTIONS.md) – Future enhancements and roadmap
 
 ---
 

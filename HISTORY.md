@@ -7,11 +7,12 @@ themes and objectives for each version.
 
 ## 📌 Table of Contents
 
-- [🧭 Version 3.2.0 - SQL Script Naming Consistency & Data Maintenance Enhancements](#-version-320---sql-script-naming-consistency--data-maintenance-enhancements)
-- [🧭 Version 3.1.0 - Script Version Alignment & Match Data Maintenance](#-version-310---script-version-alignment--match-data-maintenance)
-- [🧭 Version 3.0.0 - Schema Maintenance & Migration Reliability](#-version-300---schema-maintenance--migration-reliability)
-- [🧭 Version 2.0.1 - Documentation & Release Hygiene](#-version-201---documentation--release-hygiene)
-- [🧭 Version 2.0.0 - Schema Refinement & Data Integrity](#-version-200---schema-refinement--data-integrity)
+- [🧭 Version 4.0.0 – Competitor Data Enrichment & Schema Enhancements](#-version-400--competitor-data-enrichment--schema-enhancements)
+- [🧭 Version 3.2.0 – SQL Script Naming Consistency & Data Maintenance Enhancements](#-version-320--sql-script-naming-consistency--data-maintenance-enhancements)
+- [🧭 Version 3.1.0 – Script Version Alignment & Match Data Maintenance](#-version-310--script-version-alignment--match-data-maintenance)
+- [🧭 Version 3.0.0 – Schema Maintenance & Migration Reliability](#-version-300--schema-maintenance--migration-reliability)
+- [🧭 Version 2.0.1 – Documentation & Release Hygiene](#-version-201--documentation--release-hygiene)
+- [🧭 Version 2.0.0 – Schema Refinement & Data Integrity](#-version-200--schema-refinement--data-integrity)
 - [🧭 Version 1.1.0 – Enhanced Schema & Documentation](#-version-110--enhanced-schema--documentation)
 - [🧭 Version 1.0.0 – Initial Release](#-version-100--initial-release)
 - [🧭 Release Versioning Strategy](#-release-versioning-strategy)
@@ -25,7 +26,68 @@ themes and objectives for each version.
 
 ---
 
-## 🧭 Version 3.2.0 - SQL Script Naming Consistency & Data Maintenance Enhancements
+## 🧭 Version 4.0.0 – Competitor Data Enrichment & Schema Enhancements
+
+**Released:** May 31, 2026  
+**Type:** Minor Release (Feature Addition & Data Enhancement)
+
+### ✨ Release Theme
+
+This release focuses on **comprehensive competitor information management** and **enhanced schema capabilities**.
+The primary goal is to extend the competitor table with essential contact and identification fields and provide
+a freshly versioned v4.0.0 schema creation script for simplified deployments. It also includes an extensive seed data
+migration covering 200+ competitor records with full contact information and SAPSA membership verification.
+
+### 🎯 Key Objectives
+
+1. **Extend Competitor Information**: Add 7 new fields for contact and identification management
+2. **Simplify v4.0.0 Deployments**: Provide a unified schema creation script without sequential migrations
+3. **Enrich Seed Data**: Include 200+ pre-populated competitor records with verified SAPSA information
+4. **Ensure Backward Compatibility**: Maintain existing schema while extending with new optional fields
+5. **Support Multi-Channel Communication**: Enable email, cellphone, and secondary contact tracking
+
+### 📖 Why This Release Matters
+
+Version 4.0.0 recognises the practical needs of shooting clubs managing competitor registrations and communications.
+With extended contact information, clubs can now support:
+
+- **Multichannel communication**: Cellphone, primary email, and secondary email for notifications
+- **Identity verification**: National ID/passport number storage for membership and compliance
+- **Club administration**: Club-specific competitor numbering with uniqueness enforcement
+- **Demographic tracking**: Gender classification for category and division management
+- **Enhanced UX**: Nickname support for easier competitor identification
+
+The new `table_create-v4.0.0.sql` eliminates friction for new deployments by providing a single, comprehensive
+schema creation script. Organisations no longer need to understand the full migration history or apply sequential
+scripts—they can adopt v4.0.0 directly.
+
+The comprehensive competitor seed data (200+ records) represents a significant portion of the active South African
+practical shooting community, enabling immediate operational readiness for new HPSC installations.
+
+### 📋 Major Changes
+
+- **New**: `table_create-v4.0.0.sql` for unified v4.0.0 schema creation
+- **New**: `table_alter-v4.0.0.sql` for schema migration (v3.2.0 → v4.0.0)
+- **New**: `table_data-v4.0.0.sql` with 200+ competitor records including full contact details
+- **Enhanced**: Competitor table extended with 7 new columns
+- **Improved**: `table_alter-v3.2.0.sql` formatting with clear date markers and comments
+
+### ⚠️ Impact
+
+No breaking changes are introduced. All existing competitor data and schema structures remain fully intact.
+The new columns are designed to be compatible with existing data, allowing gradual population without
+disruption to current operations.
+
+### 🔗 Related Documentation
+
+- [Full Release Notes](RELEASE_NOTES.md) – Complete details for version 4.0.0
+- [Versioned Release Notes](documentation/history/RELEASE_NOTES_v4.0.0.md) – Archived release notes in the
+  history directory
+- [Changelog Entry](CHANGELOG.md#-400---2026-05-31) – Categorised list of all changes
+
+---
+
+## 🧭 Version 3.2.0 – SQL Script Naming Consistency & Data Maintenance Enhancements
 
 **Released:** April 26, 2026  
 **Type:** Minor Release (Operational Improvement)
@@ -33,7 +95,7 @@ themes and objectives for each version.
 ### ✨ Release Theme
 
 This release focuses on **consistent SQL script file naming** and **extended operational data clean-up**.
-The primary objective is to eliminate underscore/hyphen ambiguity in version-suffixed script filenames,
+The primary goal is to eliminate underscore/hyphen ambiguity in version-suffixed script filenames,
 expand the match-data deletion workflow to cover competitor records, and enforce uniqueness on competitor
 SAPSA numbers.
 
@@ -78,7 +140,7 @@ local runbooks to reference the renamed script files. Any automation relying on
 
 ---
 
-## 🧭 Version 3.1.0 - Script Version Alignment & Match Data Maintenance
+## 🧭 Version 3.1.0 – Script Version Alignment & Match Data Maintenance
 
 **Released:** March 15, 2026  
 **Type:** Minor Release (Operational Improvement)
@@ -86,7 +148,7 @@ local runbooks to reference the renamed script files. Any automation relying on
 ### ✨ Release Theme
 
 This release focuses on **version-aligned SQL script naming** and **safe operational match-data clean-up**.
-The primary objective is to improve script discoverability and reduce maintenance friction across
+The primary goal is to improve script discoverability and reduce maintenance friction across
 documentation, onboarding, and automation workflows.
 
 ### 🎯 Key Objectives
@@ -127,7 +189,7 @@ runbooks to reference the renamed v1.1.0 script files.
 
 ---
 
-## 🧭 Version 3.0.0 - Schema Maintenance & Migration Reliability
+## 🧭 Version 3.0.0 – Schema Maintenance & Migration Reliability
 
 **Released:** March 13, 2026  
 **Type:** Major Release (Breaking Changes)
@@ -135,12 +197,12 @@ runbooks to reference the renamed v1.1.0 script files.
 ### ✨ Release Theme
 
 This major release focuses on **schema-maintenance reliability** and **operational reset workflows**.
-The core objective is to make migrations safer across environments while providing clear teardown scripts
+The core goal is to make migrations safer across environments while providing clear teardown scripts
 for repeatable setup and testing.
 
 ### 🎯 Key Objectives
 
-1. **Relax Constraint Behavior**: Remove global uniqueness enforcement on `ipsc_match.name`
+1. **Relax Constraint Behaviour**: Remove global uniqueness enforcement on `ipsc_match.name`
 2. **Improve Migration Safety**: Use dynamic index-name resolution before applying `DROP INDEX`
 3. **Support Environment Resets**: Provide FK-safe drop scripts for current and legacy schemas
 4. **Keep Release Artefacts Aligned**: Synchronise root and historical release documentation
@@ -176,7 +238,7 @@ required at query or business-rule level.
 
 ---
 
-## 🧭 Version 2.0.1 - Documentation & Release Hygiene
+## 🧭 Version 2.0.1 – Documentation & Release Hygiene
 
 **Released:** February 25, 2026  
 **Type:** Patch Release (Documentation)
@@ -217,7 +279,7 @@ No schema changes or migrations are required. This release is safe to adopt with
 
 ---
 
-## 🧭 Version 2.0.0 - Schema Refinement & Data Integrity
+## 🧭 Version 2.0.0 – Schema Refinement & Data Integrity
 
 **Released:** February 23, 2026  
 **Type:** Major Release (Breaking Changes)
@@ -283,8 +345,8 @@ structure provides a solid foundation for future community contributions and ver
 - [Versioned Release Notes](documentation/history/RELEASE_NOTES_HISTORY.md) – Archived release notes in
   the history directory
 - [Changelog Entry](CHANGELOG.md#-200---2026-02-23) – Categorised list of all changes
-- [Migration Guide](RELEASE_NOTES.md#-upgrade-guide) - Step-by-step upgrade instructions
-- [MIT Licence](LICENSE.md) - Open source licence details
+- [Migration Guide](RELEASE_NOTES.md#-upgrade-guide) – Step-by-step upgrade instructions
+- [MIT Licence](LICENSE.md) – Open source licence details
 
 ---
 
@@ -331,7 +393,7 @@ for setting up new database instances.
 ### 🔗 Related Documentation
 
 - [Changelog Entry](CHANGELOG.md#-110---2026-01-28) – Complete list of additions and changes
-- [Architecture Documentation](ARCHITECTURE.md) - Database design principles and technical requirements
+- [Architecture Documentation](ARCHITECTURE.md) – Database design principles and technical requirements
 
 ---
 
@@ -413,6 +475,8 @@ v1.0.0 (2025-12-28) ─── Initial Release
                                └─> v3.1.0 (2026-03-15) ─── Script Alignment & Data Maintenance
                                       │
                                       └─> v3.2.0 (2026-04-26) ─── Script Naming Consistency & Data Maintenance Enhancements
+                                             │
+                                             └─> v4.0.0 (2026-05-31) ─── Competitor Data Enrichment & Schema Enhancements
 ```
 
 ---
@@ -447,13 +511,13 @@ practical shooting clubs worldwide, supporting:
   Changelog format
 - [Release Notes](RELEASE_NOTES.md) – Comprehensive release information for version 3.2.0 with upgrade guides
   and breaking changes
-- [Architecture Documentation](ARCHITECTURE.md) - Detailed database architecture, design principles, and
+- [Architecture Documentation](ARCHITECTURE.md) – Detailed database architecture, design principles, and
   technical requirements
 - [Project Overview & Quick Start Guide](README.md) – Introduction to the HPSC Database with schema entities,
   conventions, and typical workflows
-- [Improvement Suggestions](documentation/roadmap/SUGGESTIONS.md) - Future enhancements, indexing strategies,
+- [Improvement Suggestions](documentation/roadmap/SUGGESTIONS.md) – Future enhancements, indexing strategies,
   and change management best practices
-- [MIT Licence](LICENSE.md) - Open source licence terms and conditions
+- [MIT Licence](LICENSE.md) – Open source licence terms and conditions
 
 ---
 
@@ -467,6 +531,6 @@ For questions about release history, version strategy, or to provide feedback:
 
 ---
 
-*Last Updated: 2026-04-26*
+*Last Updated: 2026-05-31*
 
 

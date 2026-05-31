@@ -1,7 +1,9 @@
 #---------------------------------------------------------------------------------------------------
-# 2026-02-26
+# 2026-04-30
 #---------------------------------------------------------------------------------------------------
 
--- Add unique constraint to competitor table
-ALTER TABLE competitor
-    ADD CONSTRAINT uk_competitor_sapsa_number UNIQUE (sapsa_number);
+SELECT *
+FROM ipsc_match;
+
+select *
+from club;
