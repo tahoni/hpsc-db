@@ -7,6 +7,7 @@ of truth for each release, detailed notes are stored in version-specific files a
 ## 📌 Table of Contents
 
 - [📚 Available versions](#-available-versions)
+    - [🧾 v4.0.0](#-v400)
     - [🧾 v3.2.0](#-v320)
     - [🧾 v3.1.0](#-v310)
     - [🧾 v3.0.0](#-v300)
@@ -16,6 +17,10 @@ of truth for each release, detailed notes are stored in version-specific files a
     - [📄 Consolidated release notes](#-consolidated-release-notes)
 
 ## 📚 Available versions
+
+### 🧾 v4.0.0
+
+- 📄 [v4.0.0](RELEASE_NOTES_v4.0.0.md) – detailed notes for the 4.0.0 release
 
 ### 🧾 v3.2.0
 

@@ -27,6 +27,8 @@ of the database used by the Hartbeespoortdam Practical Shooting Club (HPSC) webs
     - [🗑️ Removed Denormalised Columns](#-removed-denormalised-columns)
     - [📌 Rationale](#-rationale)
     - [🛣️ Migration Path](#-migration-path)
+- [🚀 Schema Enhancements](#-schema-enhancements)
+    - [✨ Version 4.0.0 Competitor Enhancements](#-version-400-competitor-enhancements)
 - [💡 Design Philosophy](#-design-philosophy)
 
 ## 📖 Introduction
@@ -77,8 +79,12 @@ results and derived standings.
 
 - **competitor**
     - Represents an athlete/person.
-    - Stores identity fields and identifiers (including an optional association number).
-    - Uniqueness constraints reduce accidental duplicates.
+    - Stores identity fields and identifiers, including SAPSA membership numbers and club-specific competitor
+      numbers.
+    - As of version 4.0.0, it supports comprehensive contact information (cellphone, email) and demographic data
+      (gender, nickname).
+    - Uniqueness constraints reduce accidental duplicates and enforce federation membership compliance
+      (e.g. unique SAPSA numbers, unique club-specific competitor numbers).
 
 - **match**
     - Represents a scheduled event hosted by a club.
@@ -222,6 +228,45 @@ FROM ipsc_match m
          INNER JOIN club c ON m.club_id = c.id
 WHERE m.id = ?;
 ```
+
+## 🚀 Schema Enhancements
+
+### ✨ Version 4.0.0 Competitor Enhancements
+
+As of version 4.0.0, the competitor table has been extended with additional contact and identification fields
+to support comprehensive competitor profile management and multichannel communication:
+
+#### 🆕 New Competitor Fields
+
+- **`nickname`** (VARCHAR(255), optional) – Short name or handle for quick competitor identification
+- **`gender`** (VARCHAR(36), optional) – Competitor gender classification for category and division management
+- **`club_number`** (VARCHAR(255), unique) – Club-specific competitor number with uniqueness enforcement
+- **`id_number`** (VARCHAR(255), optional) – National identity or passport number for verification
+- **`cellphone_number`** (VARCHAR(255), optional) – Primary mobile phone contact for notifications
+- **`email_address`** (VARCHAR(255), optional) – Primary email address for communication
+- **`secondary_email_address`** (VARCHAR(255), optional) – Secondary email address for backup notifications
+
+#### 📌 Rationale
+
+These enhancements enable:
+
+- **Enhanced Competitor Profiling**: Complete contact information facilitates direct communication with
+  competitors for match notifications, results updates, and administrative matters.
+- **Demographic Tracking**: Gender and nickname fields support better category management and user experience.
+- **Identity Verification**: The `id_number` field supports membership verification and compliance requirements
+  for federation-sanctioned events.
+- **Club Administration**: The `club_number` field enables club-level competitor numbering systems with
+  uniqueness enforcement to prevent duplicate registrations within a club.
+- **Multi-Channel Outreach**: Multiple email addresses support alternative contact methods for notifications
+  and result delivery.
+
+#### ✅ Backward Compatibility
+
+These enhancements are **fully backward compatible**. All new columns are optional/nullable, allowing existing
+systems to adopt v4.0.0 without requiring immediate data migration. Applications can gradually populate these
+fields as part of normal operations.
+
+---
 
 ## 💡 Design Philosophy
 

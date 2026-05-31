@@ -19,14 +19,16 @@ release context.
 
 ## 📚 Available Versions
 
+- **[v4.0.0](./RELEASE_NOTES_v4.0.0.md)** – Competitor Data Enrichment & Schema Enhancements
+  (May 31, 2026) – **Stable**
 - **[v3.2.0](./RELEASE_NOTES_v3.2.0.md)** – SQL Script Naming Consistency & Data Maintenance Enhancements
-  (Apr 26, 2026) – **Stable**
+  (Apr 26, 2026) – **Archived**
 - **[v3.1.0](./RELEASE_NOTES_v3.1.0.md)** – Script Versioning & Match Data Maintenance (Mar 15, 2026) –
   **Archived**
 - **[v3.0.0](./RELEASE_NOTES_v3.0.0.md)** – Schema Maintenance & Migration Reliability (Mar 13, 2026) –
   **Archived**
 - **[v2.0.1](./RELEASE_NOTES_v2.0.1.md)** – Documentation & Release Hygiene (Feb 25, 2026) – **Archived**
-- **[v2.0.0](./RELEASE_NOTES_v2.0.0.md)** - Schema Refinement & Data Integrity (Feb 23, 2026) - **Archived**
+- **[v2.0.0](./RELEASE_NOTES_v2.0.0.md)** – Schema Refinement & Data Integrity (Feb 23, 2026) - **Archived**
 - **[v1.1.0](./RELEASE_NOTES_v1.1.0.md)** – Enhanced Schema & Documentation (Jan 28, 2026) – **Archived**
 - **[v1.0.0](./RELEASE_NOTES_v1.0.0.md)** – Initial Release (Dec 28, 2025) – **Archived**
 
@@ -34,7 +36,8 @@ release context.
 
 | Version   | Date         | Theme                                                         | Status   | Breaking Changes |
 |-----------|--------------|---------------------------------------------------------------|----------|------------------|
-| **3.2.0** | Apr 26, 2026 | SQL Script Naming Consistency & Data Maintenance Enhancements | Stable   | ✅ No             |
+| **4.0.0** | May 31, 2026 | Competitor Data Enrichment & Schema Enhancements              | Stable   | ✅ No             |
+| **3.2.0** | Apr 26, 2026 | SQL Script Naming Consistency & Data Maintenance Enhancements | Archived | ✅ No             |
 | **3.1.0** | Mar 15, 2026 | Script Versioning & Match Data Maintenance                    | Archived | ✅ No             |
 | **3.0.0** | Mar 13, 2026 | Schema Maintenance & Migration Reliability                    | Archived | ⚠️ Yes           |
 | **2.0.1** | Feb 25, 2026 | Documentation & Release Hygiene                               | Archived | ✅ No             |
@@ -44,6 +47,7 @@ release context.
 
 ## ⚠️ Breaking Changes Overview
 
+- **v4.0.0** – No breaking changes introduced
 - **v3.2.0** – No breaking changes introduced
 - **v3.1.0** – No breaking changes introduced
 - **v3.0.0** - `ipsc_match.name` is no longer globally unique
@@ -60,6 +64,6 @@ release context.
 ## 📝 Document Metadata
 
 - **Created:** February 24, 2026
-- **Last Updated:** April 26, 2026
-- **Coverage:** v1.0.0 – v3.2.0 (7 releases)
-- **Total Files:** 9 documentation files
+- **Last Updated:** May 31, 2026
+- **Coverage:** v1.0.0 – v4.0.0 (8 releases)
+- **Total Files:** 10 documentation files
