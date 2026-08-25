@@ -19,8 +19,10 @@ release context.
 
 ## 📚 Available Versions
 
-- **[v4.0.0](./RELEASE_NOTES_v4.0.0.md)** – Competitor Data Enrichment & Schema Enhancements
+- **[v4.1.0](./RELEASE_NOTES_v4.1.0.md)** – Schema Refinements & Automatic Timestamp Management
   (May 31, 2026) – **Stable**
+- **[v4.0.0](./RELEASE_NOTES_v4.0.0.md)** – Competitor Data Enrichment & Schema Enhancements
+  (May 31, 2026) – **Archived**
 - **[v3.2.0](./RELEASE_NOTES_v3.2.0.md)** – SQL Script Naming Consistency & Data Maintenance Enhancements
   (Apr 26, 2026) – **Archived**
 - **[v3.1.0](./RELEASE_NOTES_v3.1.0.md)** – Script Versioning & Match Data Maintenance (Mar 15, 2026) –
@@ -36,7 +38,8 @@ release context.
 
 | Version   | Date         | Theme                                                         | Status   | Breaking Changes |
 |-----------|--------------|---------------------------------------------------------------|----------|------------------|
-| **4.0.0** | May 31, 2026 | Competitor Data Enrichment & Schema Enhancements              | Stable   | ✅ No             |
+| **4.1.0** | May 31, 2026 | Schema Refinements & Automatic Timestamp Management           | Stable   | ⚠️ Yes           |
+| **4.0.0** | May 31, 2026 | Competitor Data Enrichment & Schema Enhancements              | Archived | ✅ No             |
 | **3.2.0** | Apr 26, 2026 | SQL Script Naming Consistency & Data Maintenance Enhancements | Archived | ✅ No             |
 | **3.1.0** | Mar 15, 2026 | Script Versioning & Match Data Maintenance                    | Archived | ✅ No             |
 | **3.0.0** | Mar 13, 2026 | Schema Maintenance & Migration Reliability                    | Archived | ⚠️ Yes           |
@@ -47,6 +50,9 @@ release context.
 
 ## ⚠️ Breaking Changes Overview
 
+- **v4.1.0** – `competitor.secondary_email_address` removed; `competitor.gender` is now an
+  `ENUM('Male', 'Female')`; `uk_competitor_sapsa_number` uniqueness no longer enforced;
+  `date_edited` / `date_refreshed` columns removed in favour of `date_updated`
 - **v4.0.0** – No breaking changes introduced
 - **v3.2.0** – No breaking changes introduced
 - **v3.1.0** – No breaking changes introduced
@@ -65,5 +71,5 @@ release context.
 
 - **Created:** February 24, 2026
 - **Last Updated:** May 31, 2026
-- **Coverage:** v1.0.0 – v4.0.0 (8 releases)
-- **Total Files:** 10 documentation files
+- **Coverage:** v1.0.0 – v4.1.0 (9 releases)
+- **Total Files:** 11 documentation files
