@@ -77,7 +77,7 @@ by the database instead of relying on application code.
 ### 🧹 Reduced Schema Surface
 
 - Dropping the unused `secondary_email_address`, `date_edited` and `date_refreshed` columns simplifies the
-  schema and removes columns that were never populated by application code
+  schema and removes columns never populated by application code
 
 ---
 
