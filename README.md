@@ -8,7 +8,7 @@ The official repository for the Hartbeespoortdam Practical Shooting Club (HPSC) 
 - [🧩 Schema Entities](#-schema-entities)
     - [🧱 Core Entities](#-core-entities)
     - [🏁 Results](#-results)
-    - [📊 Logging / Derived Standings](#-logging--derived-standings)
+    - [📊 Logging / Derived Standings (planned)](#-logging--derived-standings-planned)
 - [🧭 Quick Start (DataGrip)](#-quick-start-datagrip)
 - [📏 Conventions and Constraints](#-conventions-and-constraints)
     - [🔗 Foreign Keys](#-foreign-keys)
@@ -16,7 +16,8 @@ The official repository for the Hartbeespoortdam Practical Shooting Club (HPSC) 
 - [✅ Typical Workflows Supported](#-typical-workflows-supported)
     - [🧭 Common Workflow Steps](#-common-workflow-steps)
 - [🧭 Version Information](#-version-information)
-    - [✨ Key v2.0.1 Improvements](#-key-v201-improvements)
+    - [✨ Key v4.1.0 Improvements](#-key-v410-improvements)
+- [⚠️ Breaking Changes in v4.1.0](#-breaking-changes-in-v410)
 - [⚠️ Breaking Changes in v2.0.0](#-breaking-changes-in-v200)
 - [🏗️ Architecture](#-architecture)
 - [📜 Licence](#-licence)
@@ -27,16 +28,17 @@ The official repository for the Hartbeespoortdam Practical Shooting Club (HPSC) 
 
 This repository contains a relational database schema for managing shooting match results:
 clubs, competitors, matches, stages, per-match competitor performance, and per-stage scores.
-It also includes logging tables for derived/aggregated competitor standings across matches.
+It is also designed to support logging tables for derived/aggregated competitor standings across matches
+(see [📊 Logging / Derived Standings (planned)](#-logging--derived-standings-planned)).
 
 ## 🧩 Schema Entities
 
 ### 🧱 Core Entities
 
 - **Club**: organizing entity (name, abbreviation).
-- **Competitor**: person identity and competitor identifiers (e.g. competitor number, optional SAPSA
-  number)
-  and optional category.
+- **Competitor**: person identity and identifiers — name, optional nickname, date of birth, gender
+  (`Male`/`Female`), an optional SAPSA number, an optional competitor number, a unique club number, and
+  optional contact details (ID number, cellphone, email address).
 - **Match**: a scheduled match hosted by a club (name/date and optional division/category).
 - **Match stage**: stages within a match (stage number, optional range number).
 
@@ -47,7 +49,10 @@ It also includes logging tables for derived/aggregated competitor standings acro
 - **Match stage competitor**: stage-level performance for a match competitor (points, penalties,
   time, hit factor, stage points/percentage).
 
-### 📊 Logging / Derived Standings
+### 📊 Logging / Derived Standings (planned)
+
+> Not yet implemented — tracked in the [🧪 Unreleased](CHANGELOG.md#-unreleased) section of `CHANGELOG.md`.
+> See [ARCHITECTURE.md](ARCHITECTURE.md#-logging-and-summary-tables-planned) for details.
 
 - **Log match**: per-competitor results for a single match (place, points, percentage).
 - **Log matches**: per-competitor results across a match range/window (min/max match IDs and
@@ -70,7 +75,7 @@ It also includes logging tables for derived/aggregated competitor standings acro
     - match_stage → match
     - match_competitor → match, competitor
     - match_stage_competitor → match_stage, match_competitor
-    - log tables → competitor, match (and match ranges)
+    - log tables *(planned)* → competitor, match (and match ranges)
 
 ### ✅ Uniqueness Constraints
 
@@ -89,21 +94,63 @@ It also includes logging tables for derived/aggregated competitor standings acro
 - Create matches and stages for a scheduled event.
 - Record competitors participating in a match (division/discipline/power factor).
 - Record stage-by-stage scoring and compute stage/match aggregates (or store them when computed elsewhere).
-- Store leaderboard snapshots in log tables (single match or match window).
+- Store leaderboard snapshots in log tables (single match or match window) — *planned, not yet
+  implemented*.
 
 ## 🧭 Version Information
 
-**Current Version:** 2.0.1 (Released February 25, 2026)
+**Current Version:** 4.1.0 (Released May 31, 2026)
 
-This patch release focuses on documentation clarity, release-history navigation, and minor script wording standardisation. For detailed version history and upgrade information, see [HISTORY.md](HISTORY.md)
+This minor release refines the schema introduced in v4.0.0, relaxing overly strict `competitor` constraints,
+removing unused columns, and standardising `date_created`/`date_updated` handling across every table. For
+detailed version history and upgrade information, see [HISTORY.md](HISTORY.md)
 and [RELEASE_NOTES.md](RELEASE_NOTES.md).
 
-### ✨ Key v2.0.1 Improvements
+### ✨ Key v4.1.0 Improvements
 
-- **Release Navigation**: Added consolidated release notes index and quick navigation guides
-- **Formatting Consistency**: Standardised headings and layout across release documentation
-- **Documentation Clarity**: Improved readability in release notes and history summaries
-- **Script Wording**: Standardised timestamp normalisation comment wording
+- **Relaxed Constraints**: `competitor.competitor_number` is now nullable and the `uk_competitor_sapsa_number`
+  uniqueness requirement has been removed to match real club data
+- **Constrained Gender Values**: `competitor.gender` is now an `ENUM('Male', 'Female')` instead of free text
+- **Reduced Schema Surface**: Removed the unused `secondary_email_address` column and the superseded
+  `date_edited`/`date_refreshed` columns
+- **Automatic Timestamps**: `date_created`/`date_updated` are now managed automatically by the database on
+  every table
+
+## ⚠️ Breaking Changes in v4.1.0
+
+⚠️ **Schema Changes:**
+
+The following changes require attention when upgrading from v4.0.0:
+
+- `competitor.secondary_email_address` – Column removed. Back up this data before upgrading if it is still
+  required.
+- `competitor.gender` – Changed from free-text `VARCHAR(36)` to `ENUM('Male', 'Female')`. Existing rows with
+  values outside those two must be cleaned up before migrating.
+- `uk_competitor_sapsa_number` – Unique constraint removed from `competitor.sapsa_number`. Applications can
+  no longer rely on the database to enforce SAPSA number uniqueness.
+- `ipsc_match.date_edited`, `ipsc_match.date_refreshed`, `match_competitor.date_edited`,
+  `match_stage_competitor.date_edited` – Columns removed. Use `date_updated` instead, which is now
+  populated and refreshed automatically by the database.
+
+**Update Required:** Clean up non-conforming `gender` values and stop relying on `date_edited`/
+`date_refreshed` before applying the migration:
+
+```sql
+-- Before migrating, normalise any gender values outside the new ENUM:
+UPDATE competitor
+SET gender = NULL
+WHERE gender NOT IN ('Male', 'Female');
+
+-- Old approach (no longer supported):
+SELECT id, name, date_edited, date_refreshed
+FROM ipsc_match;
+
+-- New approach:
+SELECT id, name, date_updated
+FROM ipsc_match;
+```
+
+For complete upgrade instructions, see [RELEASE_NOTES.md](RELEASE_NOTES.md#-upgrade-guide).
 
 ## ⚠️ Breaking Changes in v2.0.0
 
@@ -141,7 +188,7 @@ The copyright licence can be found in the [`LICENSE.md`](LICENSE.md) file.
 
 - [Architecture Documentation](ARCHITECTURE.md) - Detailed database architecture, design principles, and
   technical requirements
-- [Release Notes](RELEASE_NOTES.md) – Comprehensive information for version 2.0.0 including upgrade guides and
+- [Release Notes](RELEASE_NOTES.md) – Comprehensive information for version 4.1.0 including upgrade guides and
   breaking changes
 - [Release History](HISTORY.md) – Historical overview of all releases with version themes and objectives
 - [Changelog](CHANGELOG.md) – Categorised list of all changes for each version

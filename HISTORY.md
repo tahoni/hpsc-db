@@ -7,6 +7,7 @@ themes and objectives for each version.
 
 ## 📌 Table of Contents
 
+- [🧭 Version 4.1.0 – Schema Refinements & Timestamp Standardisation](#-version-410--schema-refinements--timestamp-standardisation)
 - [🧭 Version 4.0.0 – Competitor Data Enrichment & Schema Enhancements](#-version-400--competitor-data-enrichment--schema-enhancements)
 - [🧭 Version 3.2.0 – SQL Script Naming Consistency & Data Maintenance Enhancements](#-version-320--sql-script-naming-consistency--data-maintenance-enhancements)
 - [🧭 Version 3.1.0 – Script Version Alignment & Match Data Maintenance](#-version-310--script-version-alignment--match-data-maintenance)
@@ -23,6 +24,71 @@ themes and objectives for each version.
     - [🔭 Long-term Vision](#-long-term-vision)
 - [🔗 Additional Resources](#-additional-resources)
 - [💬 Questions or Feedback?](#-questions-or-feedback)
+
+---
+
+## 🧭 Version 4.1.0 – Schema Refinements & Timestamp Standardisation
+
+**Released:** May 31, 2026  
+**Type:** Minor Release (Schema Refinement)
+
+### ✨ Release Theme
+
+This release focuses on **refining the schema introduced in v4.0.0** based on real-world data from the
+v4.0.0 seed import. The primary goal is to relax overly strict constraints, remove columns that proved
+unnecessary or unused, and standardise timestamp handling so that `date_created` and `date_updated` are
+managed automatically by the database rather than application code.
+
+### 🎯 Key Objectives
+
+1. **Relax Overly Strict Constraints**: Make `competitor.competitor_number` nullable and drop the
+   `uk_competitor_sapsa_number` uniqueness requirement to match real club data
+2. **Constrain Gender to Known Values**: Replace the free-text `competitor.gender` column with an
+   `ENUM('Male', 'Female')`
+3. **Remove Unused Columns**: Drop `competitor.secondary_email_address` and the superseded
+   `date_edited` / `date_refreshed` columns
+4. **Standardise Timestamps**: Give every table's `date_created` / `date_updated` columns automatic
+   defaults instead of requiring manual population
+5. **Refresh Seed Data**: Realign the 200+ competitor seed records with the updated schema
+
+### 📖 Why This Release Matters
+
+Version 4.1.0 responds directly to friction discovered while populating the v4.0.0 seed data: many real
+competitor records were missing a SAPSA number or competitor number, and free-text gender values were
+inconsistent. Rather than forcing data to fit an overly strict schema, v4.1.0 relaxes those constraints
+while tightening `gender` to a fixed set of values.
+
+Standardising `date_created` and `date_updated` to be database-managed removes an entire class of bugs
+where application code forgot to set these columns, and the now-redundant `date_edited` / `date_refreshed`
+columns are removed in favour of the single, reliable `date_updated` column.
+
+### 📋 Major Changes
+
+- **New**: `table_create-v4.1.0.sql` for unified v4.1.0 schema creation
+- **New**: `table_alter-v4.1.0.sql` for schema migration (v4.0.0 → v4.1.0)
+- **New**: `table_data-v4.1.0.sql` with 200+ competitor records refreshed for the v4.1.0 schema
+- **Changed**: `competitor.gender` changed from `VARCHAR(36)` to `ENUM('Male', 'Female')`
+- **Changed**: `competitor.competitor_number` relaxed from `NOT NULL` to nullable
+- **Changed**: `date_created` / `date_updated` given automatic defaults on `club`, `competitor`,
+  `ipsc_match`, `ipsc_match_stage`, `match_competitor` and `match_stage_competitor`
+- **Removed**: `competitor.secondary_email_address` column
+- **Removed**: `uk_competitor_sapsa_number` unique constraint
+- **Removed**: `ipsc_match.date_edited`, `ipsc_match.date_refreshed`, `match_competitor.date_edited` and
+  `match_stage_competitor.date_edited` columns
+
+### ⚠️ Impact
+
+This release introduces breaking changes for existing v4.0.0 installations. `competitor.secondary_email_address`
+data is lost when the column is dropped, and existing `competitor.gender` values outside `'Male'` /
+`'Female'` must be cleaned up before the `ENUM` conversion succeeds. Application logic relying on the
+database to enforce SAPSA number uniqueness must implement that check itself going forward.
+
+### 🔗 Related Documentation
+
+- [Full Release Notes](RELEASE_NOTES.md) – Complete details for version 4.1.0
+- [Versioned Release Notes](documentation/history/RELEASE_NOTES_v4.1.0.md) – Archived release notes in the
+  history directory
+- [Changelog Entry](CHANGELOG.md#-410---2026-05-31) – Categorised list of all changes
 
 ---
 
@@ -477,6 +543,8 @@ v1.0.0 (2025-12-28) ─── Initial Release
                                       └─> v3.2.0 (2026-04-26) ─── Script Naming Consistency & Data Maintenance Enhancements
                                              │
                                              └─> v4.0.0 (2026-05-31) ─── Competitor Data Enrichment & Schema Enhancements
+                                                    │
+                                                    └─> v4.1.0 (2026-05-31) ─── Schema Refinements & Timestamp Standardisation
 ```
 
 ---
@@ -509,7 +577,7 @@ practical shooting clubs worldwide, supporting:
 
 - [Changelog](CHANGELOG.md) – Detailed, categorised list of changes for each version following Keep a
   Changelog format
-- [Release Notes](RELEASE_NOTES.md) – Comprehensive release information for version 3.2.0 with upgrade guides
+- [Release Notes](RELEASE_NOTES.md) – Comprehensive release information for version 4.1.0 with upgrade guides
   and breaking changes
 - [Architecture Documentation](ARCHITECTURE.md) – Detailed database architecture, design principles, and
   technical requirements
