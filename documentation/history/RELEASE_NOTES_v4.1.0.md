@@ -169,9 +169,9 @@ refresh
 
 ## 🔗 Additional Resources
 
-- [Architecture Documentation](ARCHITECTURE.md) – Detailed database architecture and design principles
-- [Project Overview & Quick Start Guide](README.md) – Introduction to the HPSC Database and setup workflow
-- [Release Notes History](documentation/history/RELEASE_NOTES_HISTORY.md) – Versioned release notes index
+- [Architecture Documentation](/ARCHITECTURE.md) – Detailed database architecture and design principles
+- [Project Overview & Quick Start Guide](/README.md) – Introduction to the HPSC Database and setup workflow
+- [Release Notes History](/documentation/history/RELEASE_NOTES_HISTORY.md) – Versioned release notes index
 
 ---
 

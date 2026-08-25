@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 📌 Table of Contents
 
 - [🧪 Unreleased](#-unreleased)
+- [🧾 4.1.0](#-410---2026-05-31)
 - [🧾 4.0.0](#-400---2026-05-31)
 - [🧾 3.2.0](#-320---2026-04-26)
 - [🧾 3.1.0](#-310---2026-03-15)
@@ -29,6 +30,67 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Stored procedures for computing match totals and populating log tables
 - Seed/demo data scripts for local development
 - Additional indexing optimisations for common query patterns
+
+---
+
+## 🧾 [4.1.0] - 2026-05-31
+
+### Added
+
+- **SQL Scripts**: Added `table_create-v4.1.0.sql` — unified schema creation script covering `club`,
+  `competitor`, `ipsc_match`, `ipsc_match_stage`, `match_competitor` and `match_stage_competitor` and their
+  associations
+- **SQL Scripts**: Added `table_alter-v4.1.0.sql` — migration script relaxing `competitor` constraints,
+  dropping unused columns and standardising timestamp handling
+- **SQL Scripts**: Added `table_data-v4.1.0.sql` — refreshed seed data with 200+ competitor records aligned
+  to the v4.1.0 schema
+
+### Changed
+
+- **Database Schema**: `competitor.gender` changed from `VARCHAR(36)` to `ENUM('Male', 'Female')`
+- **Database Schema**: `competitor.competitor_number` relaxed from `NOT NULL` to nullable
+- **Database Schema**: `date_created` / `date_updated` now default to `CURRENT_TIMESTAMP`, with
+  `date_updated` auto-refreshing via `ON UPDATE CURRENT_TIMESTAMP`, on `club`, `competitor`, `ipsc_match`,
+  `ipsc_match_stage`, `match_competitor` and `match_stage_competitor`
+- **Seed Data**: `table_data-v4.1.0.sql` uses `NULL` instead of empty strings for unpopulated `gender`
+  values to satisfy the new `ENUM` column
+
+### Removed
+
+- **Database Schema**: Dropped `competitor.secondary_email_address` column
+- **Database Schema**: Dropped `uk_competitor_sapsa_number` unique constraint on `competitor.sapsa_number`
+- **Database Schema**: Dropped `ipsc_match.date_edited` and `ipsc_match.date_refreshed` columns
+- **Database Schema**: Dropped `match_competitor.date_edited` and `match_stage_competitor.date_edited`
+  columns
+
+### Improved
+
+- **Data Integrity**: Constraint relaxations align the schema with real-world club data, where SAPSA
+  numbers and competitor numbers are frequently missing or duplicated
+- **Schema Clarity**: Removing unused and superseded columns reduces schema surface area
+- **Timestamp Management**: `date_created` / `date_updated` are now managed automatically by the database
+  instead of requiring application code to set them
+
+### Breaking Changes
+
+- `competitor.secondary_email_address` removed — back up this data before upgrading if still required
+- `competitor.gender` is now an `ENUM('Male', 'Female')` — existing free-text values outside those two must
+  be cleaned up before migrating
+- `uk_competitor_sapsa_number` uniqueness is no longer enforced by the database
+- `date_edited` / `date_refreshed` columns removed from `ipsc_match`, `match_competitor` and
+  `match_stage_competitor` — use `date_updated` instead
+
+### Migration Notes
+
+For existing installations upgrading from v4.0.0:
+
+1. Back up your database
+2. Review existing `competitor.gender` values and clean up anything outside `'Male'` / `'Female'`
+3. Apply the migration script: `scripts/table_alter-v4.1.0.sql`
+
+For new v4.1.0 installations:
+- Use `scripts/table_create-v4.1.0.sql` for direct schema creation
+- (Optional) Use `scripts/table_data-v4.1.0.sql` for preloaded competitor seed data
 
 ---
 
